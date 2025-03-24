@@ -29,7 +29,7 @@
   --color-toby-frosted-pearl: oklch(96.62% 0.0162 95.22); /** #f7f4e8 */
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
