@@ -1,41 +1,43 @@
 @import "tailwindcss";
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 
-	/** Font Families */
-	--font-libre-baskerville: "Libre Baskerville", sans-serif;
-	--font-mourich: "Mourich", serif;
-	--font-roca-one: "RocaOne-Rg", serif;
-	--font-the-youngest: "TheYoungest", serif;
+  /** Font Families */
+  --font-libre-baskerville: "Libre Baskerville", sans-serif;
+  --font-mourich: "Mourich", serif;
+  --font-roca-one: "RocaOne-Rg", serif;
+  --font-the-youngest: "TheYoungest", serif;
 
-	/** Color */
-	--color-toby-black: oklch(0% 0 0);
-	--color-toby-gray: oklch(55.55% 0 0);
-	--color-toby-white: oklch(100% 0 0);
-	--color-toby-mint-frost: oklch(90.54% 0.15455 194.7689);
-	--color-toby-forest-ash: oklch(34.38% 0.0566 139.32);
-	--color-toby-autumn-ember: oklch(58.37% 0.2378 26.94);
-	--color-toby-frosted-pearl: oklch(96.62% 0.0162 95.22);
+  /** Color */
+  --color-toby-black: oklch(0% 0 0); /** #000000 */
+  --color-toby-gray: oklch(55.55% 0 0); /** #737373 */
+  --color-toby-white: oklch(100% 0 0); /** #ffffff */
+  --color-toby-twilight-ash: oklch(44.19% 0.0146 285.79); /** #52525b */
+  --color-toby-mint-frost: oklch(90.54% 0.15455 194.7689); /** #00ffff */
+  --color-toby-midnight-fog: oklch(38.29% 0.0154 91.7); /** #46433a */
+  --color-toby-forest-ash: oklch(34.38% 0.0566 139.32); /** #294023 */
+  --color-toby-autumn-ember: oklch(61.92% 0.2419 11.33); /** #f31260 */
+  --color-toby-frosted-pearl: oklch(96.62% 0.0162 95.22); /** #f7f4e8 */
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
