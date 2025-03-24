@@ -33,7 +33,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${theYoungest.variable} ${mourich.variable} ${rocaOne.variable} antialiased`}
       >
-        {children}
+        <div className="bg-toby-frosted-pearl flex flex-col min-h-screen h-full">
+          {/* Change with navbar later */}
+          <div className="flex justify-center items-center h-[93px] xl:h-[118px] mt-[42px] mb-7 mx-[46px]">
+            <h1 className="font-mourich text-3xl font-bold text-toby-black">
+              TOBY HOLDINGS
+            </h1>
+          </div>
+          <main className="mb-7 mx-8">{children}</main>
+          {/* Change with footer later */}
+          <div className="text-toby-black bg-toby-forest-ash">Footer</div>
+        </div>
       </body>
     </html>
   );
