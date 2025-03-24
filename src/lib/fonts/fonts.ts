@@ -24,8 +24,13 @@ const mourich = localFont({
 const rocaOne = localFont({
   src: [
     {
-      path: "../../../public/assets/fonts/roca-font/RocaOne-Rg.ttf",
+      path: "../../../public/assets/fonts/roca-font/Roca-Regular.otf",
       weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../../public/assets/fonts/roca-font/Roca-Thin.otf",
+      weight: "200",
       style: "normal",
     },
   ],
