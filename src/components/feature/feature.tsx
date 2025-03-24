@@ -7,7 +7,7 @@ export function Feature() {
         <h1 className="italic">“Toby Villas was everything</h1>
         <h1 className="">I didn’t know I needed.”</h1>
       </div>
-      <div className="grid gap-5 pt-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 pt-8 md:grid-cols-2 lg:grid-cols-4">
         <div className="relative">
           <Image
             src="/assets/images/Bedroom.png"
