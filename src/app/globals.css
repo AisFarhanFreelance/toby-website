@@ -27,6 +27,7 @@
   --color-toby-forest-ash: oklch(34.38% 0.0566 139.32); /** #294023 */
   --color-toby-autumn-ember: oklch(61.92% 0.2419 11.33); /** #f31260 */
   --color-toby-frosted-pearl: oklch(96.62% 0.0162 95.22); /** #f7f4e8 */
+  --color-toby-dark-slate-blue: oklch(20.38% 0.0132 233.32) /** #11181c */;
 }
 
 @media (prefers-color-scheme: light) {
