@@ -3,7 +3,7 @@ import LivingRoom from "/public/assets/images/LivingRoom.png";
 
 const AboutSection = () => {
   return (
-    <div className="mt-[152.5px] flex flex-col items-center justify-center">
+    <div className="mt-[152.5px] lg:max-w-[1440px] flex flex-col items-center justify-center">
       <div className="text-center space-y-7">
         <h1 className="font-libre-baskerville italic text-2xl lg:text-4xl uppercase">
           WELCOME !
@@ -29,7 +29,7 @@ const AboutSection = () => {
         </div>
       </div>
       <div className="flex flex-col lg:flex-row-reverse my-[61.25px] text-center lg:items-end lg:justify-between lg:w-full lg:mx-8">
-        <div className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-full lg:h-[569.2px] mx-auto">
+        <div className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-[969px] lg:h-[569.2px] mx-auto lg:mx-0">
           <Image
             src={LivingRoom}
             alt="Living Room"
