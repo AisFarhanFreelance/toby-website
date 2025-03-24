@@ -35,7 +35,7 @@ export default function RootLayout({
       >
         <div className="bg-toby-frosted-pearl flex flex-col min-h-screen h-full">
           {/* Change with navbar later */}
-          <div className="flex justify-center items-center h-[93px] xl:h-[118px] mt-[42px] mb-7 mx-[46px]">
+          <div className="flex justify-center items-center h-[93px] lg:h-[118px] mt-[42px] mb-7 mx-[46px]">
             <h1 className="font-mourich text-3xl font-bold text-toby-black">
               TOBY HOLDINGS
             </h1>

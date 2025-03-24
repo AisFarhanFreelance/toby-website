@@ -5,14 +5,14 @@ const AboutSection = () => {
   return (
     <div className="mt-[152.5px] flex flex-col items-center justify-center">
       <div className="text-center space-y-7">
-        <h1 className="font-libre-baskerville italic text-2xl uppercase">
+        <h1 className="font-libre-baskerville italic text-2xl lg:text-4xl uppercase">
           WELCOME !
         </h1>
-        <h3 className="font-mourich font-bold text-xl uppercase">
+        <h3 className="font-mourich font-bold text-xl lg:text-[80px] uppercase">
           HELLO, I&apos;M TOBY
         </h3>
         <div>
-          <p className="font-the-youngest text-base">
+          <p className="font-the-youngest text-base lg:text-[32px]">
             Villa curator. Sunset chaser. Your Bali insider. I&apos;m here to
             transform your island escape into the getaway you&apos;ve been
             scrolling for. My villas aren&apos;t just places to
@@ -22,14 +22,14 @@ const AboutSection = () => {
             Bali backdrop.
           </p>
         </div>
-        <div className="-rotate-[8.63deg] mt-20">
-          <h1 className="font-libre-baskerville italic text-4xl">
+        <div className="-rotate-[8.63deg] mt-20 text-left">
+          <h1 className="font-libre-baskerville italic text-4xl lg:text-[64px]">
             This is Villa Sophie,
           </h1>
         </div>
       </div>
-      <div className="my-[61.25px] text-center">
-        <div className="overflow-hidden relative w-[326px] h-[191.5px] mx-auto">
+      <div className="flex flex-col lg:flex-row-reverse my-[61.25px] text-center lg:items-end lg:justify-between lg:w-full lg:mx-8">
+        <div className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-full lg:h-[569.2px] mx-auto">
           <Image
             src={LivingRoom}
             alt="Living Room"
@@ -38,13 +38,16 @@ const AboutSection = () => {
             className="rounded-3xl object-cover"
           />
         </div>
-        <div className="my-[20.5px] mx-[14.5px] space-y-6 font-roca-one text-base">
+        <div className="my-[20.5px] mx-[14.5px] lg:mx-14 max-w-[297px] space-y-6 font-roca-one text-base">
           <div className="flex flex-col">
-            <span className="font-bold">Located in Uluwatu,</span>
-            <span> known for a peaceful escape in Bali</span>
+            <span className="font-bold lg:text-2xl">Located in Uluwatu,</span>
+            <span className="lg:text-2xl">
+              {" "}
+              known for a peaceful escape in Bali
+            </span>
           </div>
           <div className="">
-            <span>
+            <span className="lg:text-2xl">
               <span className="bg-toby-forest-ash text-toby-white">
                 {" "}
                 4 Bedrooms{" "}

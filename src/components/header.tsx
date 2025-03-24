@@ -11,13 +11,13 @@ const HeaderSection = () => {
         <div className="absolute flex flex-col gap-8 items-center justify-center w-full h-full">
           <div className="space-y-2.5">
             <div className="flex gap-x-3 items-center justify-center">
-              <div className="w-1 h-1 rounded-full bg-toby-white" />
-              <span className="font-mourich text-toby-white text-center">
+              <div className="w-1 h-1 lg:w-2 lg:h-2 rounded-full bg-toby-white" />
+              <span className="font-mourich text-toby-white text-center text-base lg:text-2xl">
                 Your Perfect Villa Escape Awaits
               </span>
             </div>
-            <div className="">
-              <div className="font-mourich text-base font-bold text-toby-white text-center">
+            <div>
+              <div className="font-mourich text-base lg:text-[80px] font-bold text-toby-white text-center">
                 ESCAPE TO BALI WITH{" "}
                 <span className="font-libre-baskerville italic font-normal">
                   TOBY
@@ -30,18 +30,18 @@ const HeaderSection = () => {
           </div>
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block overflow-hidden">
           <Image
             src={DesktopHeaderImage}
             alt="Desktop Header Image"
-            height={400}
-            width={326}
+            width={1376}
+            height={848}
             priority
             className="rounded-4xl"
           />
         </div>
 
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Image
             src={MobileHeaderImage}
             alt="Mobile Header Image"
