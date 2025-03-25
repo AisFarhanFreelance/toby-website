@@ -80,10 +80,10 @@ export default function Navbar() {
               >
                 <a
                   href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
-                  className={`hover:text-white ${
+                  className={`${
                     isScrolled
-                      ? "text-toby-frosted-pearl"
-                      : "text-toby-forest-ash"
+                      ? "hover:text-toby-frosted-pearl text-toby-frosted-pearl"
+                      : "hover:text-toby-forest-ash text-toby-forest-ash"
                   }`}
                 >
                   {item}
