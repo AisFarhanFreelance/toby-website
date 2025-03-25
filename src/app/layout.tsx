@@ -40,7 +40,9 @@ export default function RootLayout({
               TOBY HOLDINGS
             </h1>
           </div>
-          <main className="mb-7 mx-8">{children}</main>
+          <main className="mb-7 mx-8 lg:mx-8 lg:flex lg:content-center lg:max-w-[1440px] xl:mx-auto">
+            {children}
+          </main>
           {/* Change with footer later */}
           <div className="text-toby-black bg-toby-forest-ash">Footer</div>
         </div>
