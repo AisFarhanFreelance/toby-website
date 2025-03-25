@@ -3,7 +3,7 @@ import Image from "next/image";
 export function Feature() {
   return (
     <>
-      <div className="font-libre-baskerville text-toby-forest-ash text-center text-2xl md:text-4xl">
+      <div className="font-libre-baskerville text-toby-forest-ash text-center text-2xl md:text-4xl mt-10">
         <h1 className="italic">“Toby Villas was everything</h1>
         <h1 className="">I didn’t know I needed.”</h1>
       </div>

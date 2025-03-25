@@ -7,6 +7,7 @@ import {
   rocaOne,
   theYoungest,
 } from "@/lib/fonts/fonts";
+import { Footer } from "@/components/footer/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,8 +44,7 @@ export default function RootLayout({
           <main className="mb-7 mx-8 lg:mx-8 lg:flex lg:content-center lg:max-w-[1440px] xl:mx-auto">
             {children}
           </main>
-          {/* Change with footer later */}
-          <div className="text-toby-black bg-toby-forest-ash">Footer</div>
+          <Footer />
         </div>
       </body>
     </html>
