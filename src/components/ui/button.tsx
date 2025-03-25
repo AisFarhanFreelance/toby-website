@@ -6,7 +6,7 @@ import { cn } from "@/lib/utility/tailwindUtils";
 const buttonVariants = cva("font-mourich font-bold text-base rounded-full", {
   variants: {
     variant: {
-      default: "bg-toby-white",
+      default: "bg-toby-frosted-pearl",
       outline: "border border-toby-forest-ash text-toby-forest-ash ",
       ghost: "hover:bg-toby-forest-ash/30 hover:text-toby-white text-center",
     },
