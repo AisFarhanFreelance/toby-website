@@ -3,8 +3,8 @@ import LivingRoom from "/public/assets/images/LivingRoom.png";
 
 const AboutSection = () => {
   return (
-    <div className="mt-[152.5px] lg:max-w-[1440px] flex flex-col items-center justify-center">
-      <div className="text-center space-y-7">
+    <div className="mt-[152.5px] flex flex-col items-center justify-center">
+      <div className="text-center space-y-7 lg:px-[58px]">
         <h1 className="font-libre-baskerville italic text-2xl lg:text-4xl uppercase">
           WELCOME !
         </h1>
