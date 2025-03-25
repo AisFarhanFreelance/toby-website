@@ -10,7 +10,15 @@ import {
 
 import DatePicker from "./datePicker";
 import { Button } from "./button";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./form";
+import Input from "./input";
 
 const HeaderForm = () => {
   const form = useForm<HeaderFormValues>({
@@ -24,13 +32,16 @@ const HeaderForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex items-center">
-          <div className="hidden lg:flex w-full space-x-6 mr-8">
+        <div className="flex items-center content-center justify-between">
+          <div className="hidden lg:flex lg:w-[1068px] space-x-6 mr-8">
             <FormField
               control={form.control}
               name="checkIn"
               render={({ field }) => (
                 <FormItem className="flex-1">
+                  <FormLabel className="text-toby-white font-mourich text-sm font-bold leading-4">
+                    Check In
+                  </FormLabel>
                   <FormControl>
                     <DatePicker
                       placeholder="Check-in"
@@ -39,7 +50,7 @@ const HeaderForm = () => {
                       minDate={new Date()}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="font-mourich text-base font-extrabold" />
                 </FormItem>
               )}
             />
@@ -49,6 +60,9 @@ const HeaderForm = () => {
               name="checkOut"
               render={({ field }) => (
                 <FormItem className="flex-1">
+                  <FormLabel className="text-toby-white font-mourich text-sm font-bold leading-4">
+                    Check Out
+                  </FormLabel>
                   <FormControl>
                     <DatePicker
                       placeholder="Check-out"
@@ -57,17 +71,50 @@ const HeaderForm = () => {
                       minDate={form.watch("checkIn") || new Date()}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="font-mourich text-base font-extrabold" />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormLabel className="text-toby-white font-mourich text-sm font-bold leading-4">
+                    Max Price
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="Enter Price"
+                      value={field.value ?? ""}
+                      onChange={(e) => {
+                        const value =
+                          e.target.value === ""
+                            ? undefined
+                            : e.target.valueAsNumber;
+                        field.onChange(value);
+                      }}
+                      className="text-toby-white border-toby-frosted-pearl border-2 bg-transparent 
+                    placeholder:text-toby-frosted-pearl/80
+                    [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                  </FormControl>
+                  <FormMessage className="font-mourich text-base font-extrabold" />
                 </FormItem>
               )}
             />
           </div>
-          <Button
-            type="submit"
-            className="hidden lg:block font-bold text-base w-full"
-          >
-            Find Now!
-          </Button>
+          <div className="w-[200px]">
+            <Button
+              type="submit"
+              className="hidden lg:block font-bold text-base w-full"
+            >
+              Find Now!
+            </Button>
+          </div>
         </div>
       </form>
     </Form>
