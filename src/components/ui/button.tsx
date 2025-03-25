@@ -8,6 +8,7 @@ const buttonVariants = cva("font-mourich font-bold text-base rounded-full", {
     variant: {
       default: "bg-toby-white",
       outline: "border border-toby-forest-ash text-toby-forest-ash ",
+      ghost: "hover:bg-toby-forest-ash/30 hover:text-toby-white text-center",
     },
     size: {
       default: "h-[60px] px-[30px]",
@@ -43,4 +44,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-export default Button;
+export { Button, buttonVariants };
