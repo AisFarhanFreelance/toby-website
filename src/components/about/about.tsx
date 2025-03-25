@@ -4,15 +4,15 @@ import LivingRoom from "/public/assets/images/LivingRoom.png";
 const AboutSection = () => {
   return (
     <div className="mt-[152.5px] flex flex-col items-center justify-center">
-      <div className="text-center space-y-7 lg:px-[58px]">
-        <h1 className="font-libre-baskerville italic text-2xl lg:text-4xl uppercase">
+      <div className="text-center space-y-7 xl:px-[58px]">
+        <h1 className="font-libre-baskerville italic text-2xl xl:text-4xl uppercase">
           WELCOME !
         </h1>
-        <h3 className="font-mourich font-bold text-xl lg:text-[80px] uppercase">
+        <h3 className="font-mourich font-bold text-xl xl:text-[80px] uppercase">
           HELLO, I&apos;M TOBY
         </h3>
         <div>
-          <p className="font-the-youngest text-base lg:text-[32px]">
+          <p className="font-the-youngest text-base xl:text-[32px]">
             Villa curator. Sunset chaser. Your Bali insider. I&apos;m here to
             transform your island escape into the getaway you&apos;ve been
             scrolling for. My villas aren&apos;t just places to
@@ -23,13 +23,13 @@ const AboutSection = () => {
           </p>
         </div>
         <div className="-rotate-[8.63deg] mt-20 text-left">
-          <h1 className="font-libre-baskerville italic text-4xl lg:text-[64px]">
+          <h1 className="font-libre-baskerville italic text-4xl xl:text-[64px]">
             This is Villa Sophie,
           </h1>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row-reverse my-[61.25px] text-center lg:items-end lg:justify-between lg:w-full lg:mx-8">
-        <div className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-[969px] lg:h-[569.2px] mx-auto lg:mx-0">
+      <div className="flex flex-col lg:flex-row-reverse my-[61.25px] text-center xl:items-end xl:justify-between xl:w-full xl:mx-8">
+        <div className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-[484.5px] xl:w-[969px] lg:h-[284.6px] xl:h-[569.2px] mx-auto xl:mx-0">
           <Image
             src={LivingRoom}
             alt="Living Room"
@@ -38,16 +38,16 @@ const AboutSection = () => {
             className="rounded-3xl object-cover"
           />
         </div>
-        <div className="my-[20.5px] mx-[14.5px] lg:mx-14 max-w-[297px] space-y-6 font-roca-one text-base">
+        <div className="my-[20.5px] mx-[14.5px] xl:mx-14 max-w-[297px] space-y-6 font-roca-one text-base">
           <div className="flex flex-col">
-            <span className="font-bold lg:text-2xl">Located in Uluwatu,</span>
-            <span className="lg:text-2xl">
+            <span className="font-bold xl:text-2xl">Located in Uluwatu,</span>
+            <span className="xl:text-2xl">
               {" "}
               known for a peaceful escape in Bali
             </span>
           </div>
           <div className="">
-            <span className="lg:text-2xl">
+            <span className="xl:text-2xl">
               <span className="bg-toby-forest-ash text-toby-white">
                 {" "}
                 4 Bedrooms{" "}
