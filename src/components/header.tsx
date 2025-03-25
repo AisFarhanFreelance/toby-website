@@ -9,7 +9,7 @@ import HeaderForm from "./ui/headerForm";
 
 const HeaderSection = () => {
   return (
-    <div className="justify-center">
+    <div id="home" className="justify-center">
       <div className="relative">
         <div className="absolute flex flex-col gap-8 items-center justify-center w-full h-full">
           <div className="space-y-2.5">
