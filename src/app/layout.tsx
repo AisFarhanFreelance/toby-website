@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar/navbar";
 import {
   libreBaskerville,
   mourich,
@@ -36,11 +37,8 @@ export default function RootLayout({
       >
         <div className="bg-toby-frosted-pearl flex flex-col min-h-screen h-full">
           {/* Change with navbar later */}
-          <div className="flex justify-center items-center h-[93px] lg:h-[118px] mt-[42px] mb-7 mx-[46px]">
-            <h1 className="font-mourich text-3xl font-bold text-toby-black">
-              TOBY HOLDINGS
-            </h1>
-          </div>
+          <Navbar />
+          <div className="flex justify-center items-center h-[93px] lg:h-[118px] mt-[42px] mb-7 mx-[46px]"></div>
           <main className="mb-7 mx-8 lg:mx-8 lg:flex lg:content-center lg:max-w-[1440px] xl:mx-auto">
             {children}
           </main>
