@@ -2,10 +2,8 @@ import Image from "next/image";
 
 import DesktopHeaderImage from "/public/assets/images/DesktopHeaderImage.svg";
 import MobileHeaderImage from "/public/assets/images/MobileHeaderImage.svg";
-import { Button } from "./ui/button";
-import HeaderForm from "./ui/headerForm";
-// import { Button } from "./ui/button";
-// import DatePicker from "./ui/datePicker";
+import { Button } from "../ui/button";
+import HeaderForm from "../ui/headerForm";
 
 const HeaderSection = () => {
   return (
@@ -29,17 +27,6 @@ const HeaderSection = () => {
             </div>
           </div>
           <div className="lg:w-full lg:px-[38px] lg:mb-[51px] lg:absolute lg:bottom-0">
-            {/* <div className="flex items-center">
-              <div className="hidden lg:flex w-full space-x-6 mr-8">
-                <DatePicker />
-                <DatePicker />
-              </div>
-              <Button className="lg:hidden">Check out our villas</Button>
-              <Button className="hidden lg:block font-bold text-base w-full">
-                Find Now!
-              </Button>
-            </div> */}
-
             <HeaderForm />
             <Button className="lg:hidden">Check out our villas</Button>
           </div>
