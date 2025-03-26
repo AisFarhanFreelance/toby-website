@@ -39,10 +39,10 @@ export function Feature() {
       </div>
       <div ref={ref} className="grid gap-5 pt-8 md:grid-cols-2 lg:grid-cols-4">
         {[
-          { src: "/assets/images/Bedroom.png", alt: "Bedroom" },
+          { src: "/assets/images/BedRoom.png", alt: "Bedroom" },
           { src: "/assets/images/DiningRoom.png", alt: "Dining Room" },
           { src: "/assets/images/Rooftop.png", alt: "Rooftop" },
-          { src: "/assets/images/Bathroom.png", alt: "Bathroom" },
+          { src: "/assets/images/BathRoom.png", alt: "Bathroom" },
         ].map((image, index) => (
           <motion.div
             key={image.src}
