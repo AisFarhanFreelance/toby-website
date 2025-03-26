@@ -1,7 +1,9 @@
+import FindAVilla from "@/components/list/findAVilla";
+
 const Villas = () => {
   return (
     <div>
-      <h1>Find A Villa</h1>
+      <FindAVilla />
     </div>
   );
 };
