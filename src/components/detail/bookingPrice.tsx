@@ -1,27 +1,56 @@
+import Image from "next/image";
+
+import Location from "/public/assets/icon/MapPoint.svg";
+import { Button } from "../ui/button";
+
 const BookingPrice = () => {
   return (
-    <div className="border-2 rounded-xl border-toby-forest-ash/25">
-      <div className="p-8">
-        <div>
-          <div>Start From</div>
-          <div>location</div>
-        </div>
-        <div>
-          <div>CheckIn</div>
-          <div>CheckOut</div>
-        </div>
-        <div>
-          <div>
-            <div>Adult</div>
-            <div>button</div>
+    <div className="border-2 rounded-xl border-toby-forest-ash/25 font-mourich">
+      <div className="p-8 space-y-16">
+        <div className="space-y-8">
+          <div className="uppercase space-y-2">
+            <div>
+              <div className="text-sm text-toby-forest-ash/50 font-bold">
+                Start From
+              </div>
+              <div className="font-bold text-4xl">
+                IDR 7.999.999
+                <span className="text-toby-forest-ash/50">
+                  / <span className="font-normal text-[32px]">Night</span>
+                </span>
+              </div>
+            </div>
+            <div className="flex text-sm">
+              <div className="flex-shrink-0">
+                <Image src={Location} alt="PinPointIcon" sizes="16" />
+              </div>
+              <span className="ml-2">
+                Jl. Segara Wangi No.36, Jimbaran, Kuta, Badung Regency, Bali
+                80361, Indonesia
+              </span>
+            </div>
           </div>
           <div>
-            <div>Children</div>
-            <div>button</div>
+            <div>CheckIn</div>
+            <div>CheckOut</div>
           </div>
+          <div>
+            <div>
+              <div>Adult</div>
+              <div>button</div>
+            </div>
+            <div>
+              <div>Children</div>
+              <div>button</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <Button className="bg-toby-forest-ash text-toby-frosted-pearl w-full">
+            Book
+          </Button>
         </div>
       </div>
-      <div>Button</div>
     </div>
   );
 };
