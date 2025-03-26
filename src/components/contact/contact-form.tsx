@@ -17,15 +17,58 @@ import {
 import Input from "../ui/input";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/text-area";
+import { createClient } from "@/lib/utility/supabase/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function ContactForm() {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
   });
 
-  const onSubmit = (data: ContactFormValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const supabase = createClient();
+  const router = useRouter();
+
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      setFile(files[0]);
+    }
+  };
+
+  const uploadFile = async (file: File) => {
+    const fileExt = file.name.split(".").pop();
+    const filePath = `${Date.now()}.${fileExt}`;
+
+    const { error } = await supabase.storage
+      .from("attachments")
+      .upload(filePath, file);
+
+    if (error) {
+      return null;
+    }
+
+    return supabase.storage.from("attachments").getPublicUrl(filePath).data
+      .publicUrl;
+  };
+
+  const onSubmit = async (data: ContactFormValues) => {
+    let attachmentUrl = null;
+
+    if (file) {
+      attachmentUrl = await uploadFile(file);
+    }
+
+    const insertData = {
+      ...data,
+      attachment: attachmentUrl,
+    };
+
+    await supabase.from("contact_entries").insert([insertData]);
+
+    router.push("/");
   };
 
   return (
@@ -79,7 +122,7 @@ export function ContactForm() {
                 File
               </FormLabel>
               <FormControl>
-                <Input type="file" />
+                <Input type="file" onChange={handleFileChange} />
               </FormControl>
               <FormMessage className="font-mourich text-base font-extrabold" />
             </FormItem>
