@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 
 import {
   headerFormSchema,
@@ -25,15 +26,20 @@ const HeaderForm = () => {
     resolver: zodResolver(headerFormSchema),
   });
 
-  const onSubmit = (data: HeaderFormValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const onSubmit = () => {
+    // Handle form submission logic here
   };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex items-center content-center justify-between">
-          <div className="hidden lg:flex lg:w-[1068px] space-x-6 mr-8">
+        <motion.div
+          className="flex justify-center items-center w-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="lg:w-[1068px] space-x-6 mr-8 flex justify-between items-center flex-wrap relative bottom-2">
             <FormField
               control={form.control}
               name="checkIn"
@@ -115,7 +121,7 @@ const HeaderForm = () => {
               Find Now!
             </Button>
           </div>
-        </div>
+        </motion.div>
       </form>
     </Form>
   );

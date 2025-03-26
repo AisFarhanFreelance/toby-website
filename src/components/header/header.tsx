@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import DesktopHeaderImage from "/public/assets/images/DesktopHeaderImage.svg";
 import MobileHeaderImage from "/public/assets/images/MobileHeaderImage.svg";
@@ -12,19 +15,46 @@ const HeaderSection = () => {
         <div className="absolute flex flex-col gap-8 items-center justify-center w-full h-full">
           <div className="space-y-2.5">
             <div className="flex gap-x-3 items-center justify-center">
-              <div className="w-1 h-1 xl:w-2 xl:h-2 rounded-full bg-toby-white" />
-              <span className="font-mourich text-toby-white text-center text-base lg:text-2xl">
+              <motion.div
+                className="w-1 h-1 lg:w-2 lg:h-2 rounded-full bg-toby-white"
+                animate={{
+                  opacity: [1, 0.5, 1],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+              />
+              <motion.span
+                className="font-mourich text-toby-white text-center text-base lg:text-2xl"
+                animate={{
+                  opacity: [1, 0.5, 1],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+              >
                 Your Perfect Villa Escape Awaits
-              </span>
+              </motion.span>
             </div>
-            <div>
-              <div className="font-mourich text-base lg:text-[40px] xl:text-[80px] font-bold text-toby-white text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1,
+                ease: "easeOut",
+              }}
+            >
+              <div className="font-mourich text-base lg:text-[80px] font-bold text-toby-white text-center">
                 ESCAPE TO BALI WITH{" "}
                 <span className="font-libre-baskerville italic font-normal">
                   TOBY
                 </span>
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="lg:w-full lg:px-[38px] lg:mb-[51px] lg:absolute lg:bottom-0">
             <HeaderForm />
