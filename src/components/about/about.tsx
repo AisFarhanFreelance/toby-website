@@ -8,7 +8,10 @@ import LivingRoom from "/public/assets/images/LivingRoom.png";
 
 const AboutSection = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 1 });
+  const [ref, inView] = useInView({
+    threshold: 0,
+    rootMargin: "-220px 0px 0px 0px",
+  });
 
   useEffect(() => {
     if (inView) {
@@ -18,37 +21,73 @@ const AboutSection = () => {
     }
   }, [controls, inView]);
 
+  // Fade-in variant
+  const elementVariants = {
+    visible: { opacity: 1, transition: { duration: 1 } },
+    hidden: { opacity: 0 },
+  };
+
   return (
-    <div
+    <motion.div
       id="aboutus"
-      className="mt-[152.5px] flex flex-col items-center justify-center"
+      className="pt-[220px] flex flex-col items-center justify-center"
     >
-      <div className="text-center space-y-7 lg:px-[58px]">
+      <motion.div
+        className="text-center space-y-7 lg:px-[58px]"
+        initial="hidden"
+        animate={controls}
+        variants={elementVariants}
+      >
         <h1 className="font-libre-baskerville italic text-2xl lg:text-4xl uppercase">
           WELCOME !
         </h1>
-        <h3 className="font-mourich font-bold text-xl xl:text-[80px] uppercase">
+      </motion.div>
+
+      <motion.div
+        className="text-center space-y-7 lg:px-[58px]"
+        initial="hidden"
+        animate={controls}
+        variants={elementVariants}
+      >
+        <h3 className="font-mourich font-bold text-xl lg:text-[80px] uppercase">
           HELLO, I&apos;M TOBY
         </h3>
-        <div>
-          <p className="font-the-youngest text-base xl:text-[32px]">
-            Villa curator. Sunset chaser. Your Bali insider. I&apos;m here to
-            transform your island escape into the getaway you&apos;ve been
-            scrolling for. My villas aren&apos;t just places to
-            stay—they&apos;re experiences designed for those moments worth
-            posting. From sunrise coffee on private balconies to midnight dips
-            under the stars, I&apos;ve crafted each space to be your perfect
-            Bali backdrop.
-          </p>
-        </div>
-        <div className="-rotate-[8.63deg] mt-20 text-left">
-          <h1 className="font-libre-baskerville italic text-4xl xl:text-[64px]">
-            This is Villa Sophie,
-          </h1>
-        </div>
-      </div>
-      <div className="flex flex-col lg:flex-row-reverse my-[61.25px] text-center xl:items-end xl:justify-between xl:w-full xl:mx-8">
-        <div className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-[484.5px] xl:w-[969px] lg:h-[284.6px] xl:h-[569.2px] mx-auto xl:mx-0">
+      </motion.div>
+
+      <motion.div
+        className="text-center space-y-7 lg:px-[58px]"
+        initial="hidden"
+        animate={controls}
+        variants={elementVariants}
+      >
+        <p className="font-the-youngest text-base lg:text-[32px]">
+          Villa curator. Sunset chaser. Your Bali insider. I&apos;m here to
+          transform your island escape into the getaway you&apos;ve been
+          scrolling for. My villas aren&apos;t just places to stay—they&apos;re
+          experiences designed for those moments worth posting. From sunrise
+          coffee on private balconies to midnight dips under the stars,
+          I&apos;ve crafted each space to be your perfect Bali backdrop.
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="-rotate-[8.63deg] mt-20 text-left"
+        initial="hidden"
+        animate={controls}
+        variants={elementVariants}
+      >
+        <h1 className="font-libre-baskerville italic text-4xl lg:text-[64px]">
+          This is Villa Sophie,
+        </h1>
+      </motion.div>
+
+      <div className="flex flex-col lg:flex-row-reverse my-[61.25px] text-center lg:items-end lg:justify-between lg:w-full lg:mx-8">
+        <motion.div
+          className="overflow-hidden relative w-[326px] h-[191.5px] lg:w-[969px] lg:h-[569.2px] mx-auto lg:mx-0"
+          initial="hidden"
+          animate={controls}
+          variants={elementVariants}
+        >
           <Image
             src={LivingRoom}
             alt="Living Room"
@@ -56,7 +95,7 @@ const AboutSection = () => {
             priority
             className="rounded-3xl object-cover"
           />
-        </div>
+        </motion.div>
         <div
           ref={ref}
           className="my-[20.5px] mx-[14.5px] lg:mx-14 max-w-[297px] space-y-6 font-roca-one text-base"
@@ -68,13 +107,11 @@ const AboutSection = () => {
               known for a peaceful escape in Bali
             </span>
           </div>
+
           <motion.div
             initial="hidden"
             animate={controls}
-            variants={{
-              visible: { opacity: 1 },
-              hidden: { opacity: 0.5 },
-            }}
+            variants={elementVariants}
           >
             <span className="lg:text-2xl">
               <span
@@ -103,7 +140,7 @@ const AboutSection = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
