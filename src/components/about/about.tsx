@@ -19,9 +19,12 @@ const AboutSection = () => {
   }, [controls, inView]);
 
   return (
-    <div className="mt-[152.5px] flex flex-col items-center justify-center">
-      <div className="text-center space-y-7 xl:px-[58px]">
-        <h1 className="font-libre-baskerville italic text-2xl xl:text-4xl uppercase">
+    <div
+      id="aboutus"
+      className="mt-[152.5px] flex flex-col items-center justify-center"
+    >
+      <div className="text-center space-y-7 lg:px-[58px]">
+        <h1 className="font-libre-baskerville italic text-2xl lg:text-4xl uppercase">
           WELCOME !
         </h1>
         <h3 className="font-mourich font-bold text-xl xl:text-[80px] uppercase">
