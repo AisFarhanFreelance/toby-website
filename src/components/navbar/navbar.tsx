@@ -38,22 +38,24 @@ export default function Navbar() {
         <div className="w-full flex items-center justify-between gap-6 p-4 font-[Mourich] relative">
           <motion.div
             animate={{
-              scale: [1, 1.1, 1],
-              rotate: [0, 5, -5, 0],
-              textShadow: [
-                "0 0 10px rgba(255, 255, 255, 0.3)",
-                "0 0 20px rgba(255, 255, 255, 0.6)",
-                "0 0 10px rgba(255, 255, 255, 0.3)",
-              ],
+              opacity: 1,
             }}
             transition={{
-              duration: 2.5,
+              duration: 0.25,
               ease: "easeInOut",
-              repeat: Infinity,
+            }}
+            whileHover={{
+              scale: 1.1,
+              rotate: 10,
+              opacity: 1,
+            }}
+            style={{
+              border: "none",
+              outline: "none",
             }}
           >
             <Link
-              href="/"
+              href="/#home"
               className={`text-2xl font-bold font-[Mourich] ${
                 isScrolled ? "text-toby-frosted-pearl" : ""
               }`}
@@ -62,7 +64,7 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          <nav className="hidden md:flex space-x-6 font-[Mourich] text-[24px] rounded-full">
+          <nav className="hidden md:flex space-x-6 font-[Roca] font-light text-[24px] rounded-full">
             {["Home", "About Us", "Contact Us"].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -112,17 +114,17 @@ export default function Navbar() {
 
             <motion.div
               animate={{
-                scale: [1, 1.1, 1],
-                boxShadow: [
-                  "0 0 10px rgba(255, 255, 255, 0.3)",
-                  "0 0 20px rgba(255, 255, 255, 0.6)",
-                  "0 0 10px rgba(255, 255, 255, 0.3)",
-                ],
+                scale: [1, 1.02, 1],
+                opacity: [0.9, 1, 0.9],
               }}
               transition={{
-                duration: 2,
+                duration: 3,
                 ease: "easeInOut",
                 repeat: Infinity,
+              }}
+              whileHover={{
+                scale: 1.05,
+                opacity: 1,
               }}
               className="ml-auto rounded-full"
             >

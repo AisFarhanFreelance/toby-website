@@ -1,6 +1,10 @@
 import VillaOverview from "@/components/detail/villaOverview";
 
-const VillaDetail = async ({ params }: { params: { slug: string } }) => {
+const VillaDetail = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
   const { slug } = await params;
 
   return (
