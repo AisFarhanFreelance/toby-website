@@ -1,7 +1,23 @@
+"use client";
+
+import { useEffect } from "react";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import LivingRoom from "/public/assets/images/LivingRoom.png";
 
 const AboutSection = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 1 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
   return (
     <div className="mt-[152.5px] flex flex-col items-center justify-center">
       <div className="text-center space-y-7 xl:px-[58px]">
@@ -38,7 +54,10 @@ const AboutSection = () => {
             className="rounded-3xl object-cover"
           />
         </div>
-        <div className="my-[20.5px] mx-[14.5px] xl:mx-14 max-w-[297px] space-y-6 font-roca-one text-base">
+        <div
+          ref={ref}
+          className="my-[20.5px] mx-[14.5px] lg:mx-14 max-w-[297px] space-y-6 font-roca-one text-base"
+        >
           <div className="flex flex-col">
             <span className="font-bold xl:text-2xl">Located in Uluwatu,</span>
             <span className="xl:text-2xl">
@@ -46,14 +65,29 @@ const AboutSection = () => {
               known for a peaceful escape in Bali
             </span>
           </div>
-          <div className="">
-            <span className="xl:text-2xl">
-              <span className="bg-toby-forest-ash text-toby-white">
+          <motion.div
+            initial="hidden"
+            animate={controls}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0.5 },
+            }}
+          >
+            <span className="lg:text-2xl">
+              <span
+                className={`${
+                  inView ? "bg-toby-forest-ash text-toby-white" : ""
+                }`}
+              >
                 {" "}
                 4 Bedrooms{" "}
               </span>{" "}
               with swimming pool &{" "}
-              <span className="bg-toby-forest-ash text-toby-white">
+              <span
+                className={`${
+                  inView ? "bg-toby-forest-ash text-toby-white" : ""
+                }`}
+              >
                 {" "}
                 spacious living area{" "}
               </span>{" "}
@@ -63,7 +97,7 @@ const AboutSection = () => {
                 Wine Down with Toby
               </span>
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
