@@ -6,7 +6,10 @@ import Link from "next/link";
 export function Contact() {
   return (
     <>
-      <h1 className="font-mourich text-[60px] md:text-[120px] lg:text-[240px] overflow-hidden tracking-tight whitespace-nowrap font-semibold">
+      <h1
+        id="contactus"
+        className="font-mourich text-[60px] md:text-[120px] lg:text-[240px] overflow-hidden tracking-tight whitespace-nowrap font-semibold"
+      >
         CONTACT US
       </h1>
       <div className="flex flex-col md:flex-row-reverse">
