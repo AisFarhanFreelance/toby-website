@@ -12,7 +12,7 @@ import Ruler from "/public/assets/icon/Ruler.svg";
 
 import BedRoom from "/public/assets/images/BedRoom.png";
 import DiningRoom from "/public/assets/images/DiningRoom.png";
-import RoofTop from "/public/assets/images/RoofTop.png";
+import RoofTop from "/public/assets/images/Rooftop.png";
 import BathRoom from "/public/assets/images/BathRoom.png";
 
 const features = [
