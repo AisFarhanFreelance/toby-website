@@ -76,9 +76,9 @@ const PriceForm = () => {
               </div>
               <div>
                 <Stepper
-                  min={1}
+                  min={0}
                   max={5}
-                  value={1}
+                  value={0}
                   onChange={(value) => console.log("New Value:", value)}
                 />
               </div>
@@ -92,9 +92,9 @@ const PriceForm = () => {
               </div>
               <div>
                 <Stepper
-                  min={1}
+                  min={0}
                   max={5}
-                  value={1}
+                  value={0}
                   onChange={(value) => console.log("New Value:", value)}
                 />
               </div>
