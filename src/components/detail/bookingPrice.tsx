@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import Location from "/public/assets/icon/MapPoint.svg";
 import { Button } from "../ui/button";
+import PriceForm from "../ui/priceForm";
 
 const BookingPrice = () => {
   return (
@@ -31,18 +32,7 @@ const BookingPrice = () => {
             </div>
           </div>
           <div>
-            <div>CheckIn</div>
-            <div>CheckOut</div>
-          </div>
-          <div>
-            <div>
-              <div>Adult</div>
-              <div>button</div>
-            </div>
-            <div>
-              <div>Children</div>
-              <div>button</div>
-            </div>
+            <PriceForm />
           </div>
         </div>
         <div>
