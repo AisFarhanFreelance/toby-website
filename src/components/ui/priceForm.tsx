@@ -36,7 +36,7 @@ const PriceForm = () => {
                         onChange={field.onChange}
                         minDate={new Date()}
                         iconColor="oklch(50% 0.0566 139.32)"
-                        buttonClassName="border-toby-forest-ash/50 text-toby-forest-ash/50 border-2 text-xs font-bold"
+                        buttonClassName="border-toby-forest-ash/50 text-toby-forest-ash/50 border-2 text-xs sm:text-base font-bold"
                       />
                     </FormControl>
                   </FormItem>
@@ -69,7 +69,7 @@ const PriceForm = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <div className="uppercase flex flex-col">
-                <span className="text-sm font-bold">Adults</span>
+                <span className="text-sm lg:text-base font-bold">Adults</span>
                 <span className="text-toby-forest-ash/50 text-xs font-bold">
                   Age 13+
                 </span>
@@ -85,7 +85,7 @@ const PriceForm = () => {
             </div>
             <div className="flex justify-between items-center">
               <div className="uppercase flex flex-col">
-                <span className="text-sm font-bold">Children</span>
+                <span className="text-sm lg:text-base font-bold">Children</span>
                 <span className="text-toby-forest-ash/50 text-xs font-bold">
                   Age 1-12
                 </span>

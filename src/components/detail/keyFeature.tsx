@@ -27,7 +27,7 @@ const images = [BedRoom, DiningRoom, RoofTop, BathRoom];
 
 const KeyFeature = () => {
   return (
-    <div className="font-mourich text-base font-bold text-toby-forest-ash space-y-7">
+    <div className="font-mourich text-base font-bold text-toby-forest-ash space-y-7 lg:min-w-[442px] lg:flex lg:flex-col lg:justify-between lg:h-full">
       <div className="space-y-3">
         <div className="flex items-center text-center gap-2 uppercase">
           <Image src={Star} alt="Star" sizes="24" />
