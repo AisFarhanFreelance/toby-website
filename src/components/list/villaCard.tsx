@@ -23,23 +23,59 @@ const VillaCard = (villa: villa) => {
 
   return (
     <>
-      <Card>
+      <Card className="lg:w-[443px]">
         <CardHeader className="p-0">
           <div className="relative">
-            <Image
-              src={villa.images[0].url}
-              width={800}
-              height={600}
-              alt="BedRoom"
-              className="rounded-2xl"
-            />
+            {villa.images[0]?.url ? (
+              <>
+                <div className="lg:hidden">
+                  <Image
+                    src={villa.images[0].url}
+                    alt="BedRoom"
+                    width={800}
+                    height={600}
+                    className="object-cover object-center rounded-2xl"
+                  />
+                </div>
+
+                <div className="hidden lg:block lg:w-[443px] lg:h-[300px] overflow-hidden relative">
+                  <Image
+                    src={villa.images[0].url}
+                    alt="BedRoom"
+                    fill
+                    className="object-cover object-center rounded-2xl"
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="rounded-2xl lg:hidden">
+                  <Image
+                    src="https://placehold.co/600x400.png"
+                    alt="BedRoom"
+                    width={800}
+                    height={600}
+                    className="object-cover object-center"
+                  />
+                </div>
+
+                <div className="rounded-2xl hidden lg:block lg:w-[443px] lg:h-[300px] overflow-hidden relative">
+                  <Image
+                    src="https://placehold.co/600x400.png"
+                    alt="BedRoom"
+                    fill
+                    className="object-cover object-center"
+                  />
+                </div>
+              </>
+            )}
 
             <div className="absolute inset-0 bg-gradient-to-t from-toby-dark-slate-blue rounded-2xl" />
 
-            <div className="absolute inset-x-0 bottom-0 uppercase text-toby-frosted-pearl space-y-2 w-48 h-fit ml-6 mb-6">
+            <div className="absolute inset-x-0 bottom-0 uppercase text-toby-frosted-pearl space-y-2 w-48 lg:w-56 h-fit ml-6 mb-6">
               <div>
-                <div className="text-sm font-bold">Start From</div>
-                <div className="font-bold text-2xl">
+                <div className="text-sm lg:text-base font-bold">Start From</div>
+                <div className="font-bold text-2xl lg:text-3xl">
                   IDR {villa.price}
                   <span>
                     / <span className="font-normal text-base">Night</span>
@@ -49,18 +85,18 @@ const VillaCard = (villa: villa) => {
               <div>
                 <div className="flex items-center text-center space-x-1">
                   <div>
-                    <MapPin className="w-3 h-3" />
+                    <MapPin className="w-3 h-3 lg:w-4 lg:h-4" />
                   </div>
-                  <span className="font-normal text-sm">
+                  <span className="font-normal text-sm lg:text-base">
                     {villa.short_address}
                   </span>
                 </div>
-                <div className="text-2xl font-bold">
+                <div className="text-2xl lg:text-4xl truncate font-bold">
                   <span>{villa.name}</span>
                 </div>
               </div>
               <div>
-                <Button className="text-toby-forest-ash w-full h-10">
+                <Button className="text-toby-forest-ash w-full h-10 lg:h-12">
                   Book
                 </Button>
               </div>
@@ -68,7 +104,7 @@ const VillaCard = (villa: villa) => {
           </div>
         </CardHeader>
         <CardContent className="mt-4">
-          <div className="space-y-3 text-sm font-bold">
+          <div className="space-y-3 text-sm lg:text-base font-bold">
             <div className="flex items-center text-center gap-2 uppercase">
               <Image src={Star} alt="Star" sizes="24" />
               <span>{villa.rating}</span>
@@ -78,7 +114,7 @@ const VillaCard = (villa: villa) => {
             </div>
             <div className="flex flex-wrap gap-3 uppercase">
               {feature.map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
+                <div key={index} className="flex items-center gap-1">
                   <Image src={item.src} alt={item.alt} sizes="16" />
                   <span>{item.text}</span>
                 </div>
@@ -92,7 +128,7 @@ const VillaCard = (villa: villa) => {
               <Badge
                 key={index}
                 variant="outline"
-                className="h-8 items-center text-xs font-bold"
+                className="h-8 lg:h-10 items-center text-xs lg:text-base font-bold"
               >
                 {feature.tag}
               </Badge>

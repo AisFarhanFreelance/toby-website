@@ -1,4 +1,5 @@
 import FindAVilla from "@/components/list/findAVilla";
+import { villa } from "@/lib/types/villa";
 import { createClient } from "@/lib/utility/supabase/server";
 
 const Villas = async () => {
