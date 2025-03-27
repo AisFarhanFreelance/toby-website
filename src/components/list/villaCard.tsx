@@ -5,37 +5,34 @@ import { MapPin } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
-import BedRoom from "/public/assets/images/BedRoom.png";
-
 import Star from "/public/assets/icon/Star.svg";
 import UserRounded from "/public/assets/icon/UserRounded.svg";
 import Bed from "/public/assets/icon/Bed.svg";
 import Bath from "/public/assets/icon/Bath.svg";
 import Ruler from "/public/assets/icon/Ruler.svg";
 import { Badge } from "../ui/badge";
+import { villa } from "@/lib/types/villa";
 
-const features = [
-  "Include Breakfast",
-  "Family Friendly",
-  "Daily Cleaning",
-  "Chef Available",
-  "Quite Area",
-];
+const VillaCard = (villa: villa) => {
+  const feature = [
+    { src: UserRounded, alt: "UserRounded", text: villa.capacity },
+    { src: Bed, alt: "Bed", text: `${villa.bedroom} Bedrooms` },
+    { src: Bath, alt: "Bath", text: `${villa.bathroom} Bathrooms` },
+    { src: Ruler, alt: "Ruler", text: `${villa.area} m²` },
+  ];
 
-const feature = [
-  { src: UserRounded, alt: "UserRounded", text: "10" },
-  { src: Bed, alt: "Bed", text: "2 Bedrooms" },
-  { src: Bath, alt: "Bath", text: "2 Bathrooms" },
-  { src: Ruler, alt: "Ruler", text: "200 m²" },
-];
-
-const VillaCard = () => {
   return (
     <>
       <Card>
         <CardHeader className="p-0">
           <div className="relative">
-            <Image src={BedRoom} alt="BedRoom" className="rounded-2xl" />
+            <Image
+              src={villa.images[0].url}
+              width={800}
+              height={600}
+              alt="BedRoom"
+              className="rounded-2xl"
+            />
 
             <div className="absolute inset-0 bg-gradient-to-t from-toby-dark-slate-blue rounded-2xl" />
 
@@ -43,7 +40,7 @@ const VillaCard = () => {
               <div>
                 <div className="text-sm font-bold">Start From</div>
                 <div className="font-bold text-2xl">
-                  IDR 7.999.999
+                  IDR {villa.price}
                   <span>
                     / <span className="font-normal text-base">Night</span>
                   </span>
@@ -54,10 +51,12 @@ const VillaCard = () => {
                   <div>
                     <MapPin className="w-3 h-3" />
                   </div>
-                  <span className="font-normal text-sm">Kuta Bali</span>
+                  <span className="font-normal text-sm">
+                    {villa.short_address}
+                  </span>
                 </div>
                 <div className="text-2xl font-bold">
-                  <span>Villa Ken</span>
+                  <span>{villa.name}</span>
                 </div>
               </div>
               <div>
@@ -72,8 +71,10 @@ const VillaCard = () => {
           <div className="space-y-3 text-sm font-bold">
             <div className="flex items-center text-center gap-2 uppercase">
               <Image src={Star} alt="Star" sizes="24" />
-              <span>5</span>
-              <span className="text-toby-forest-ash/50">| 10 Review</span>
+              <span>{villa.rating}</span>
+              <span className="text-toby-forest-ash/50">
+                | {villa.review_count} Review
+              </span>
             </div>
             <div className="flex flex-wrap gap-3 uppercase">
               {feature.map((item, index) => (
@@ -87,13 +88,13 @@ const VillaCard = () => {
         </CardContent>
         <CardFooter>
           <div className="flex flex-wrap gap-3">
-            {features.map((feature, index) => (
+            {villa.tags.map((feature, index) => (
               <Badge
                 key={index}
                 variant="outline"
                 className="h-8 items-center text-xs font-bold"
               >
-                {feature}
+                {feature.tag}
               </Badge>
             ))}
           </div>

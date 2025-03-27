@@ -2,8 +2,15 @@ import { Search } from "lucide-react";
 
 import Input from "../ui/input";
 import VillaCard from "./villaCard";
+import { villa } from "@/lib/types/villa";
 
-const FindAVilla = () => {
+type findAVillaProps = {
+  villas: villa[];
+};
+
+const FindAVilla = (props: findAVillaProps) => {
+  const { villas } = props;
+
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
@@ -21,7 +28,8 @@ const FindAVilla = () => {
       </div>
 
       <div>
-        <VillaCard />
+        {villas &&
+          villas.map((villa) => <VillaCard key={villa.id} {...villa} />)}
       </div>
     </div>
   );
