@@ -10,10 +10,24 @@ export type villa = {
   area: number;
   description: string;
   review_count: number;
-  images: {
-    url: string;
-  }[];
-  tags: {
-    tag: string;
-  }[];
+  images: image[];
+  tags: tag[];
+};
+
+export type villaDetail = villa & {
+  amenities: amenity[];
+  long_address: string;
+};
+
+export type amenity = {
+  name: string;
+  image: string;
+};
+
+export type tag = {
+  tag: string;
+};
+
+export type image = {
+  url: string;
 };
