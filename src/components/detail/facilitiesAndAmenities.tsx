@@ -1,41 +1,35 @@
 import Image from "next/image";
-
-import Swimming from "/public/assets/icon/Swimming.svg";
-import Display from "/public/assets/icon/Display.svg";
-import UserRounded from "/public/assets/icon/UserRounded.svg";
-import WiFiRouterRound from "/public/assets/icon/Wi-FiRouterRound.svg";
+import { amenity } from "@/lib/types/villa";
 
 interface FacilitiesAndAmenitiesProps {
-  villaName: string;
+  name: string;
+  amenities: amenity[];
 }
 
-const FacilitiesAndAmenities = ({ villaName }: FacilitiesAndAmenitiesProps) => {
+const FacilitiesAndAmenities = (props: FacilitiesAndAmenitiesProps) => {
+  const { name, amenities } = props;
+
   return (
     <div className="font-mourich font-bold space-y-8 lg:min-w-72">
       <div className="text-left">
         <h1 className="text-[40px] lg:text-7xl capitalize">
-          {villaName.replace(/-/g, " ")}
+          {name.replace(/-/g, " ")}
         </h1>
       </div>
       <div className="space-y-4">
         <h3 className="text-2xl lg:text-4xl">Amenities</h3>
         <div className="grid grid-cols-2 gap-4 uppercase leading-[100%] -tracking-[4%] text-sm lg:text-base">
-          <div className="flex items-center gap-2">
-            <Image src={Swimming} alt="Swimming" />
-            <div>Pool</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Image src={Display} alt="Display" />
-            <div>Smart TV</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Image src={UserRounded} alt="UserRounded" />
-            <div>Kitchen</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Image src={WiFiRouterRound} alt="WiFiRouterRound" />
-            <div>WiFi</div>
-          </div>
+          {amenities.map((amenity) => (
+            <div key={amenity.name} className="flex items-center gap-2">
+              <Image
+                src={amenity.image}
+                alt={amenity.name}
+                width={24}
+                height={24}
+              />
+              <div>{amenity.name}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
