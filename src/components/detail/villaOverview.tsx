@@ -45,12 +45,16 @@ interface VillaOverviewProps {
 
 const VillaOverview = ({ villaName }: VillaOverviewProps) => {
   return (
-    <div className="space-y-3">
-      <FacilitiesAndAmenities villaName={villaName} />
-      <div className="w-full h-[332px] overflow-hidden relative rounded-xl">
-        <Image src={BedRoom} alt="BedRoom" fill className="object-cover" />
+    <div className="space-y-3 lg:space-y-7">
+      <div className="space-y-3 lg:space-y-7 lg:flex lg:space-x-8 lg:h-[560px]">
+        <FacilitiesAndAmenities villaName={villaName} />
+        <div className="w-full h-[332px] lg:h-[560px] overflow-hidden relative rounded-xl">
+          <Image src={BedRoom} alt="BedRoom" fill className="object-cover" />
+        </div>
+        <div className="lg:flex lg:flex-col lg:justify-between lg:h-full">
+          <KeyFeature />
+        </div>
       </div>
-      <KeyFeature />
       <DescriptionAndPrice sections={sections} />
     </div>
   );

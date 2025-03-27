@@ -51,7 +51,7 @@ export const DatePicker = ({
                   {format(value, "dd MM yyyy")}
                 </span>
               ) : (
-                <span className="font-bold text-base flex-1 text-left">
+                <span className="font-bold text-xs sm:text-base flex-1 text-left">
                   {placeholder}
                 </span>
               )}
