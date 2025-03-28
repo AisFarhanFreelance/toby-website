@@ -1,8 +1,13 @@
+"use client";
+
 import { Search } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import { villa } from "@/lib/types/villa";
 
 import Input from "../ui/input";
 import VillaCard from "./villaCard";
-import { villa } from "@/lib/types/villa";
 
 type findAVillaProps = {
   villas: villa[];
@@ -10,6 +15,23 @@ type findAVillaProps = {
 
 const FindAVilla = (props: findAVillaProps) => {
   const { villas } = props;
+
+  const [search, setSearch] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const query = searchParams.get("query") ?? "";
+    setSearch(query);
+  }, [searchParams]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      router.push(`?query=${search}`, { scroll: false });
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [search, router]);
 
   return (
     <div>
@@ -22,6 +44,7 @@ const FindAVilla = (props: findAVillaProps) => {
             type="text"
             placeholder="Search"
             className="flex-1 bg-transparent border-transparent text-base font-bold text-toby-forest-ash placeholder:text-toby-forest-ash/50 focus:outline-none focus-visible:border-transparent focus-visible:ring-transparent"
+            onChange={(e) => setSearch(e.target.value)}
           />
           <Search className="text-toby-forest-ash/50" size={24} />
         </div>
