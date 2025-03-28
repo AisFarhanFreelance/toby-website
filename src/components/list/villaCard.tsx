@@ -55,7 +55,7 @@ const VillaCard = (villa: villa) => {
                     alt="BedRoom"
                     width={800}
                     height={600}
-                    className="object-cover object-center"
+                    className="object-cover object-center rounded-2xl"
                   />
                 </div>
 
@@ -64,7 +64,7 @@ const VillaCard = (villa: villa) => {
                     src="https://placehold.co/600x400.png"
                     alt="BedRoom"
                     fill
-                    className="object-cover object-center"
+                    className="object-cover object-center rounded-2xl"
                   />
                 </div>
               </>

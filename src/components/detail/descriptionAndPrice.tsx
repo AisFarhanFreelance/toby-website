@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utility/tailwindUtils";
 import BookingPrice from "./bookingPrice";
 
 interface DescriptionAndPriceProps {
@@ -18,10 +19,18 @@ const DescriptionAndPrice = (props: DescriptionAndPriceProps) => {
 
         <div className="space-y-6 lg:col-span-2">
           {description.split("\\n").map((paragraph, index) => {
+            const isTitle =
+              paragraph.length > 0 &&
+              !paragraph.endsWith(".") &&
+              paragraph.split(" ").length <= 5;
+
             return (
               <div
                 key={index}
-                className="font-roca-one text-toby-forest-ash text-base lg:text-lg not-italic"
+                className={cn(
+                  "font-roca-one text-toby-forest-ash text-base lg:text-lg not-italic",
+                  isTitle ? "font-semibold lg:text-xl mt-4" : "font-light",
+                )}
               >
                 <div className="mb-2">{paragraph}</div>
               </div>

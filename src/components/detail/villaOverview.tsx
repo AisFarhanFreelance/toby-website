@@ -17,12 +17,21 @@ const VillaOverview = (props: VillaOverviewProps) => {
       <div className="space-y-3 lg:space-y-7 lg:flex lg:space-x-8 lg:h-[560px]">
         <FacilitiesAndAmenities name={villa.name} amenities={villa.amenities} />
         <div className="w-full h-[332px] lg:h-[560px] overflow-hidden relative rounded-xl">
-          <Image
-            src={villa.images[0].url}
-            alt="Villa Main Image"
-            fill
-            className="object-cover"
-          />
+          {villa.images[0]?.url ? (
+            <Image
+              src={villa.images[0].url}
+              alt="Villa Main Image"
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <Image
+              src="https://placehold.co/550x560.png"
+              alt="BedRoom"
+              fill
+              className="object-cover"
+            />
+          )}
         </div>
         <div className="lg:flex lg:flex-col lg:justify-between lg:h-full">
           <KeyFeature
