@@ -9,54 +9,64 @@ import UserRounded from "/public/assets/icon/UserRounded.svg";
 import Bed from "/public/assets/icon/Bed.svg";
 import Bath from "/public/assets/icon/Bath.svg";
 import Ruler from "/public/assets/icon/Ruler.svg";
+import { image, tag } from "@/lib/types/villa";
 
-import BedRoom from "/public/assets/images/BedRoom.png";
-import DiningRoom from "/public/assets/images/DiningRoom.png";
-import RoofTop from "/public/assets/images/Rooftop.png";
-import BathRoom from "/public/assets/images/BathRoom.png";
+interface KeyFeatureProps {
+  rating: number;
+  review_count: number;
+  capacity: number;
+  bedroom: number;
+  bathroom: number;
+  area: number;
+  tags: tag[];
+  images: image[];
+}
 
-const features = [
-  "Include Breakfast",
-  "Family Friendly",
-  "Daily Cleaning",
-  "Chef Available",
-  "Quite Area",
-];
+const KeyFeature = (props: KeyFeatureProps) => {
+  const {
+    rating,
+    review_count,
+    capacity,
+    bedroom,
+    bathroom,
+    area,
+    tags,
+    images,
+  } = props;
 
-const images = [BedRoom, DiningRoom, RoofTop, BathRoom];
-
-const KeyFeature = () => {
   return (
     <div className="font-mourich text-base font-bold text-toby-forest-ash space-y-7 lg:min-w-[442px] lg:flex lg:flex-col lg:justify-between lg:h-full">
       <div className="space-y-3">
         <div className="flex items-center text-center gap-2 uppercase">
           <Image src={Star} alt="Star" sizes="24" />
-          <span>5</span>
-          <span className="text-toby-forest-ash/50">| 10 Review</span>
+          <span>{rating}</span>
+          <span className="text-toby-forest-ash/50">
+            | {review_count} Review
+          </span>
         </div>
         <div className="flex flex-wrap gap-4 uppercase">
           <div className="flex items-center gap-2">
             <Image src={UserRounded} alt="UserRounded" sizes="24" />
-            <span>10</span>
+            <span>{capacity}</span>
           </div>
           <div className="flex items-center gap-2">
             <Image src={Bed} alt="Bed" sizes="24" />
-            <span>2 Bedrooms</span>
+            <span>{bedroom} Bedrooms</span>
           </div>
           <div className="flex items-center gap-2">
             <Image src={Bath} alt="Bath" sizes="24" />
-            <span>2 Bathrooms</span>
+            <span>{bathroom} Bathrooms</span>
           </div>
           <div className="flex items-center gap-2">
             <Image src={Ruler} alt="Ruler" sizes="24" />
-            <span>200 m²</span>
+            <span>{area} m²</span>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          {features.map((feature, index) => (
+          {tags.map((tag, index) => (
             <Badge key={index} variant="outline">
-              {feature}
+              {tag.tag}
             </Badge>
           ))}
         </div>
@@ -69,8 +79,10 @@ const KeyFeature = () => {
               className="overflow-hidden h-20 w-[66px] rounded-[22.55px] border-4 border-toby-frosted-pearl"
             >
               <Image
-                src={image}
+                src={image.url}
                 alt={`villa image detail ${index + 1}`}
+                width={800}
+                height={600}
                 className="object-cover w-full h-full"
               />
             </div>

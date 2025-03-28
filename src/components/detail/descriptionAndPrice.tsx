@@ -1,11 +1,14 @@
 import BookingPrice from "./bookingPrice";
 
-interface VillaSection {
-  subtitle: string;
-  content: string | string[];
+interface DescriptionAndPriceProps {
+  description: string;
+  price: number;
+  long_address: string;
 }
 
-const DescriptionAndPrice = ({ sections }: { sections: VillaSection[] }) => {
+const DescriptionAndPrice = (props: DescriptionAndPriceProps) => {
+  const { description, price, long_address } = props;
+
   return (
     <div className="text-toby-forest-ash space-y-6 lg:grid lg:grid-cols-3 lg:gap-8">
       <div className="lg:col-span-2 lg:grid lg:grid-cols-3 lg:gap-8">
@@ -14,22 +17,13 @@ const DescriptionAndPrice = ({ sections }: { sections: VillaSection[] }) => {
         </div>
 
         <div className="space-y-6 lg:col-span-2">
-          {sections.map((section, index) => {
-            const paragraphs =
-              typeof section.content === "string"
-                ? [section.content]
-                : section.content;
-
+          {description.split("\\n").map((paragraph, index) => {
             return (
-              <div key={index} className="font-roca-one">
-                <h2 className="text-lg lg:text-xl font-semibold mb-2">
-                  {section.subtitle}
-                </h2>
-                <div className="text-sm space-y-2 font-light lg:text-base">
-                  {paragraphs.map((paragraph, paraIndex) => (
-                    <p key={paraIndex}>{paragraph}</p>
-                  ))}
-                </div>
+              <div
+                key={index}
+                className="font-roca-one text-toby-forest-ash text-base lg:text-lg not-italic"
+              >
+                <div className="mb-2">{paragraph}</div>
               </div>
             );
           })}
@@ -37,7 +31,7 @@ const DescriptionAndPrice = ({ sections }: { sections: VillaSection[] }) => {
       </div>
 
       <div>
-        <BookingPrice />
+        <BookingPrice price={price} long_address={long_address} />
       </div>
     </div>
   );
