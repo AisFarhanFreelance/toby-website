@@ -1,5 +1,4 @@
 import { FlatCompat } from "@eslint/eslintrc";
-import checkFile from "eslint-plugin-check-file";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -22,19 +21,6 @@ const eslintConfig = [
       "no-alert": "error",
       "no-nested-ternary": "error",
       "consistent-return": "error",
-      "check-file/filename-naming-convention": [
-        "error",
-        {
-          "**/*.{jsx,tsx}": "KEBAB_CASE",
-          "**/*.{js,ts}": "KEBAB_CASE",
-        },
-      ],
-      "check-file/folder-naming-convention": [
-        "error",
-        {
-          "src/**/": "KEBAB_CASE",
-        },
-      ],
     },
   }),
 ];
