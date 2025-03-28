@@ -12,7 +12,6 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     extends: ["next/core-web-vitals", "next/typescript"],
-    plugins: ["check-file"],
     rules: {
       "no-console": "error",
       "no-unused-vars": "error",
