@@ -1,8 +1,8 @@
 import Image from "next/image";
 
+import PriceForm from "@/components/ui/price-form";
+
 import Location from "/public/assets/icon/MapPoint.svg";
-import { Button } from "../ui/button";
-import PriceForm from "../ui/priceForm";
 
 interface BookingPriceProps {
   price: number;
@@ -36,13 +36,8 @@ const BookingPrice = (props: BookingPriceProps) => {
             </div>
           </div>
           <div>
-            <PriceForm />
+            <PriceForm price={price} />
           </div>
-        </div>
-        <div>
-          <Button className="bg-toby-forest-ash text-toby-frosted-pearl w-full">
-            Book
-          </Button>
         </div>
       </div>
     </div>
