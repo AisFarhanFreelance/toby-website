@@ -1,16 +1,15 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import {
+  HeaderFormValues,
+  headerFormSchema,
+} from "@/lib/schema/headerFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 
-import {
-  headerFormSchema,
-  HeaderFormValues,
-} from "@/lib/schema/headerFormSchema";
-
-import DatePicker from "./datePicker";
 import { Button } from "./button";
+import DatePicker from "./datePicker";
 import {
   Form,
   FormControl,
@@ -52,7 +51,9 @@ const HeaderForm = () => {
                     <DatePicker
                       placeholder="Check-in"
                       value={field.value}
-                      onChange={field.onChange}
+                      onChange={(date) => {
+                        field.onChange(date);
+                      }}
                       minDate={new Date()}
                     />
                   </FormControl>
@@ -73,7 +74,9 @@ const HeaderForm = () => {
                     <DatePicker
                       placeholder="Check-out"
                       value={field.value}
-                      onChange={field.onChange}
+                      onChange={(date) => {
+                        field.onChange(date);
+                      }}
                       minDate={form.watch("checkIn") || new Date()}
                     />
                   </FormControl>

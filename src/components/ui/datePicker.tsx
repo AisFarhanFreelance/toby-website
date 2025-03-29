@@ -3,11 +3,13 @@
 // import { useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "iconsax-react";
-import { Button } from "./button";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+
 import { cn } from "@/lib/utility/tailwindUtils";
+
+import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { FormControl } from "./form";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 interface DatePickerProps {
   value?: Date;
@@ -29,6 +31,15 @@ export const DatePicker = ({
   minDate,
   disabled = false,
 }: DatePickerProps) => {
+  const handleDateChange = (date: Date) => {
+    if (date) {
+      const utcDate = new Date(
+        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
+      );
+      onChange?.(utcDate);
+    }
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -67,8 +78,10 @@ export const DatePicker = ({
       <PopoverContent className="w-auto p-0" align="end">
         <Calendar
           mode="single"
+          required={true}
           selected={value}
-          onSelect={onChange}
+          // onSelect={onChange}
+          onSelect={handleDateChange}
           disabled={(date) => {
             if (minDate && date < minDate) return true;
             return false;
