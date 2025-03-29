@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +25,13 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const navigateToVillaList = (pathname: string) => {
+    if (pathname === "/villas") {
+      return;
+    }
+    router.push("/villas");
   };
 
   return (
@@ -128,7 +140,12 @@ export default function Navbar() {
               }}
               className="ml-auto rounded-full"
             >
-              <Button variant={isScrolled ? "default" : "outline"}>
+              <Button
+                variant={isScrolled ? "default" : "outline"}
+                onClick={() => {
+                  navigateToVillaList(pathname);
+                }}
+              >
                 Check Out Our Villas
               </Button>
             </motion.div>
@@ -188,7 +205,14 @@ export default function Navbar() {
                 </a>
 
                 <motion.div whileHover={{ scale: 1.05 }}>
-                  <Button variant="outline">Check Out Our Villas</Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      navigateToVillaList(pathname);
+                    }}
+                  >
+                    Check Out Our Villas
+                  </Button>
                 </motion.div>
               </div>
             </motion.div>

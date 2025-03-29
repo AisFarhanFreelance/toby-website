@@ -1,25 +1,17 @@
+import { getVillaList } from "@/actions/villa-list";
+
 import FindAVilla from "@/components/list/findAVilla";
+
 import { villa } from "@/lib/types/villa";
-import { createClient } from "@/lib/utility/supabase/server";
 
-const Villas = async () => {
-  const supabase = await createClient();
+interface VillasProps {
+  searchParams: Promise<{ query: string }>;
+}
 
-  const { data } = await supabase.from("villas").select(`
-    id,
-    name,
-    short_address,
-    price,
-    rating,
-    capacity,
-    bedroom,
-    bathroom,
-    area,
-    description,
-    review_count,
-    images (url),
-    tags (tag)
-  `);
+const Villas = async ({ searchParams }: VillasProps) => {
+  const { query } = await searchParams;
+
+  const data = await getVillaList(query);
 
   return (
     <div>
