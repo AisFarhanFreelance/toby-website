@@ -1,5 +1,6 @@
+import BookingPrice from "@/components/detail/booking-price";
+
 import { cn } from "@/lib/utility/tailwindUtils";
-import BookingPrice from "./bookingPrice";
 
 interface DescriptionAndPriceProps {
   description: string;

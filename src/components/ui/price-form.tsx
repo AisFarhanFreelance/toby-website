@@ -1,24 +1,86 @@
-/* eslint-disable no-console */
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { Form, FormControl, FormField, FormItem, FormLabel } from "./form";
+import { checkVillaAvailability, insertBooking } from "@/actions/villa-booking";
 import {
-  priceFormSchema,
   PriceFormValues,
+  priceFormSchema,
 } from "@/lib/schema/price-form-schema";
-import DatePicker from "./datePicker";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { Button } from "@/components/ui/button";
+import DatePicker from "@/components/ui/datePicker";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./form";
 import Stepper from "./stepper";
 
-const PriceForm = () => {
+interface PriceFormProps {
+  price: number;
+}
+
+const PriceForm = (props: PriceFormProps) => {
+  const { price } = props;
+
   const form = useForm<PriceFormValues>({
     resolver: zodResolver(priceFormSchema),
   });
+
+  const [adultsCount, setAdultsCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
+
+  const { slug } = useParams();
+  const router = useRouter();
+
+  const onSubmit = async (villaId: string, data: PriceFormValues) => {
+    const { checkIn, checkOut } = data;
+
+    const isAvailable = await checkVillaAvailability({
+      villaId,
+      checkIn,
+      checkOut,
+    });
+
+    if (!isAvailable) {
+      form.setError("error", {
+        type: "manual",
+        message: "Villa is not available on selected dates",
+      });
+      return;
+    }
+
+    form.setError("error", {
+      type: "manual",
+      message: "",
+    });
+
+    await insertBooking({
+      villaId,
+      checkIn,
+      checkOut,
+      adultsCount,
+      childrenCount,
+      price,
+    });
+
+    router.push("/villas");
+  };
+
   return (
     <Form {...form}>
-      <form action="">
+      <form
+        onSubmit={form.handleSubmit((data) =>
+          onSubmit(slug?.toString() ?? "", data),
+        )}
+      >
         <div className="space-y-8">
           <div className="flex space-x-3 w-full">
             <div className="w-full">
@@ -39,6 +101,7 @@ const PriceForm = () => {
                         buttonClassName="border-toby-forest-ash/50 text-toby-forest-ash/50 border-2 text-xs sm:text-base font-bold"
                       />
                     </FormControl>
+                    <FormMessage className="font-mourich text-base font-extrabold" />
                   </FormItem>
                 )}
               />
@@ -61,6 +124,7 @@ const PriceForm = () => {
                         buttonClassName="border-toby-forest-ash/50 text-toby-forest-ash/50 border-2 text-xs font-bold"
                       />
                     </FormControl>
+                    <FormMessage className="font-mourich text-base font-extrabold" />
                   </FormItem>
                 )}
               />
@@ -79,7 +143,7 @@ const PriceForm = () => {
                   min={0}
                   max={5}
                   value={0}
-                  onChange={(value) => console.log("New Value:", value)}
+                  onChange={(value) => setAdultsCount(value)}
                 />
               </div>
             </div>
@@ -95,11 +159,25 @@ const PriceForm = () => {
                   min={0}
                   max={5}
                   value={0}
-                  onChange={(value) => console.log("New Value:", value)}
+                  onChange={(value) => setChildrenCount(value)}
                 />
               </div>
             </div>
           </div>
+          <Button
+            type="submit"
+            className="bg-toby-forest-ash text-toby-frosted-pearl w-full"
+          >
+            Book
+          </Button>
+          <FormField
+            name="error"
+            render={() => (
+              <FormItem className="flex-1">
+                <FormMessage className="font-mourich text-base font-extrabold"></FormMessage>
+              </FormItem>
+            )}
+          />
         </div>
       </form>
     </Form>
