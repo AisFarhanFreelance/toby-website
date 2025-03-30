@@ -7,6 +7,7 @@ export const priceFormSchema = z.object({
   checkOut: z.date({
     required_error: "Check-out date is required",
   }),
+  error: z.string().optional(),
 });
 
 export type PriceFormValues = z.infer<typeof priceFormSchema>;
