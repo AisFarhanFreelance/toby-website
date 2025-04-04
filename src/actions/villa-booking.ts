@@ -36,7 +36,13 @@ interface insertBookingParams {
   price: number;
 }
 
-export async function insertBooking(params: insertBookingParams) {
+interface insertBookingResponse {
+  id: string;
+}
+
+export async function insertBooking(
+  params: insertBookingParams,
+): Promise<insertBookingResponse[] | null> {
   const { villaId, checkIn, checkOut, adultsCount, childrenCount, price } =
     params;
 
@@ -46,17 +52,18 @@ export async function insertBooking(params: insertBookingParams) {
     Math.abs(checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24),
   );
 
-  const { error } = await supabase.from("bookings").insert([
-    {
+  const { data, error } = await supabase
+    .from("bookings")
+    .insert({
       villa_id: parseInt(villaId),
       check_in: checkIn.toISOString(),
       check_out: checkOut.toISOString(),
       adults_count: adultsCount,
       children_count: childrenCount,
       total_price: price * diffDays,
-    },
-  ]);
+    })
+    .select();
 
-  if (error) return false;
-  return true;
+  if (error) return null;
+  return data;
 }

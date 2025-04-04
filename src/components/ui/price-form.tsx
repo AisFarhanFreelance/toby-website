@@ -2,6 +2,10 @@
 
 import { checkVillaAvailability, insertBooking } from "@/actions/villa-booking";
 import {
+  createMidtransPaymentLink,
+  updateBooking,
+} from "@/actions/villa-payment";
+import {
   PriceFormValues,
   priceFormSchema,
 } from "@/lib/schema/price-form-schema";
@@ -62,13 +66,47 @@ const PriceForm = (props: PriceFormProps) => {
       message: "",
     });
 
-    await insertBooking({
+    const booking = await insertBooking({
       villaId,
       checkIn,
       checkOut,
       adultsCount,
       childrenCount,
       price,
+    });
+
+    if (!booking) {
+      form.setError("error", {
+        type: "manual",
+        message: "Failed to book villa",
+      });
+      return;
+    }
+
+    const bookingId = booking[0].id;
+
+    const diffDays = Math.ceil(
+      Math.abs(checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24),
+    );
+
+    const paymentLink = await createMidtransPaymentLink({
+      orderId: bookingId,
+      villaName: slug?.toString() ?? "",
+      villaPrice: price,
+      days: diffDays,
+    });
+
+    if (!paymentLink.payment_url) {
+      form.setError("error", {
+        type: "manual",
+        message: "Failed to create payment link",
+      });
+      return;
+    }
+
+    await updateBooking({
+      bookingId,
+      paymentLink: paymentLink.payment_url,
     });
 
     router.push("/villas");
