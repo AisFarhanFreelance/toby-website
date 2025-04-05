@@ -2,6 +2,10 @@
 
 import { checkVillaAvailability, insertBooking } from "@/actions/villa-booking";
 import {
+  createMidtransPaymentLink,
+  updateBooking,
+} from "@/actions/villa-payment";
+import {
   PriceFormValues,
   priceFormSchema,
 } from "@/lib/schema/price-form-schema";
@@ -25,10 +29,11 @@ import Stepper from "./stepper";
 
 interface PriceFormProps {
   price: number;
+  villaName: string;
 }
 
 const PriceForm = (props: PriceFormProps) => {
-  const { price } = props;
+  const { price, villaName } = props;
 
   const form = useForm<PriceFormValues>({
     resolver: zodResolver(priceFormSchema),
@@ -39,6 +44,8 @@ const PriceForm = (props: PriceFormProps) => {
 
   const { slug } = useParams();
   const router = useRouter();
+
+  const expiryTime = process.env.MIDTRANS_PAYMENT_LINK_EXPIRED_TIME ?? 60;
 
   const onSubmit = async (villaId: string, data: PriceFormValues) => {
     const { checkIn, checkOut } = data;
@@ -62,16 +69,52 @@ const PriceForm = (props: PriceFormProps) => {
       message: "",
     });
 
-    await insertBooking({
+    const booking = await insertBooking({
       villaId,
       checkIn,
       checkOut,
       adultsCount,
       childrenCount,
       price,
+      expiredAt: new Date(Date.now() + expiryTime * 60 * 1000),
     });
 
-    router.push("/villas");
+    if (!booking) {
+      form.setError("error", {
+        type: "manual",
+        message: "Failed to book villa",
+      });
+      return;
+    }
+
+    const bookingId = booking[0].id;
+
+    const diffDays = Math.ceil(
+      Math.abs(checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24),
+    );
+
+    const paymentLink = await createMidtransPaymentLink({
+      orderId: bookingId,
+      villaName,
+      villaPrice: price,
+      days: diffDays,
+    });
+
+    if (!paymentLink.payment_url) {
+      form.setError("error", {
+        type: "manual",
+        message: "Failed to create payment link",
+      });
+      return;
+    }
+
+    await updateBooking({
+      bookingId,
+      paymentLink: paymentLink.payment_url,
+      expired_at: new Date(Date.now() + expiryTime * 60 * 1000),
+    });
+
+    router.push(`/payment/${bookingId}`);
   };
 
   return (

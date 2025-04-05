@@ -1,9 +1,10 @@
 import Image from "next/image";
 
+import { villaDetail } from "@/lib/types/villa";
+
+import DescriptionAndPrice from "./descriptionAndPrice";
 import FacilitiesAndAmenities from "./facilitiesAndAmenities";
 import KeyFeature from "./keyFeature";
-import DescriptionAndPrice from "./descriptionAndPrice";
-import { villaDetail } from "@/lib/types/villa";
 
 interface VillaOverviewProps {
   villa: villaDetail;
@@ -50,6 +51,7 @@ const VillaOverview = (props: VillaOverviewProps) => {
         description={villa.description}
         price={villa.price}
         long_address={villa.long_address}
+        villaName={villa.name}
       />
     </div>
   );
