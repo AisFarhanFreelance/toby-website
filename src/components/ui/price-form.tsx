@@ -45,7 +45,8 @@ const PriceForm = (props: PriceFormProps) => {
   const { slug } = useParams();
   const router = useRouter();
 
-  const expiryTime = process.env.MIDTRANS_PAYMENT_LINK_EXPIRED_TIME ?? 60;
+  const expiryTime =
+    Number(process.env.MIDTRANS_PAYMENT_LINK_EXPIRED_TIME) || 60;
 
   const onSubmit = async (villaId: string, data: PriceFormValues) => {
     const { checkIn, checkOut } = data;
