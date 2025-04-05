@@ -42,7 +42,7 @@ export async function createMidtransPaymentLink(
           },
         ],
         expiry: {
-          duration: 60,
+          duration: process.env.MIDTRANS_PAYMENT_LINK_EXPIRED_TIME ?? 60,
           unit: "minutes",
         },
       }),
@@ -70,18 +70,20 @@ interface updateBookingParams {
   bookingId: string;
   paymentLink?: string;
   status?: string;
+  expired_at?: Date;
 }
 
 export async function updateBooking(params: updateBookingParams) {
   const supabase = await createClient();
 
-  const { bookingId, paymentLink, status } = params;
+  const { bookingId, paymentLink, status, expired_at } = params;
 
   const { error } = await supabase
     .from("bookings")
     .update({
       payment_link: paymentLink,
       status,
+      expired_at,
     })
     .eq("id", bookingId);
 

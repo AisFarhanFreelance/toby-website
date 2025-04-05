@@ -29,10 +29,11 @@ import Stepper from "./stepper";
 
 interface PriceFormProps {
   price: number;
+  villaName: string;
 }
 
 const PriceForm = (props: PriceFormProps) => {
-  const { price } = props;
+  const { price, villaName } = props;
 
   const form = useForm<PriceFormValues>({
     resolver: zodResolver(priceFormSchema),
@@ -43,6 +44,8 @@ const PriceForm = (props: PriceFormProps) => {
 
   const { slug } = useParams();
   const router = useRouter();
+
+  const expiryTime = process.env.MIDTRANS_PAYMENT_LINK_EXPIRED_TIME ?? 60;
 
   const onSubmit = async (villaId: string, data: PriceFormValues) => {
     const { checkIn, checkOut } = data;
@@ -73,6 +76,7 @@ const PriceForm = (props: PriceFormProps) => {
       adultsCount,
       childrenCount,
       price,
+      expiredAt: new Date(Date.now() + expiryTime * 60 * 1000),
     });
 
     if (!booking) {
@@ -91,7 +95,7 @@ const PriceForm = (props: PriceFormProps) => {
 
     const paymentLink = await createMidtransPaymentLink({
       orderId: bookingId,
-      villaName: slug?.toString() ?? "",
+      villaName,
       villaPrice: price,
       days: diffDays,
     });
@@ -107,9 +111,10 @@ const PriceForm = (props: PriceFormProps) => {
     await updateBooking({
       bookingId,
       paymentLink: paymentLink.payment_url,
+      expired_at: new Date(Date.now() + expiryTime * 60 * 1000),
     });
 
-    router.push("/villas");
+    router.push(`/payment/${bookingId}`);
   };
 
   return (

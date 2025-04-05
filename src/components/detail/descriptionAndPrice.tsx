@@ -6,10 +6,11 @@ interface DescriptionAndPriceProps {
   description: string;
   price: number;
   long_address: string;
+  villaName: string;
 }
 
 const DescriptionAndPrice = (props: DescriptionAndPriceProps) => {
-  const { description, price, long_address } = props;
+  const { description, price, long_address, villaName } = props;
 
   return (
     <div className="text-toby-forest-ash space-y-6 lg:grid lg:grid-cols-3 lg:gap-8">
@@ -41,7 +42,11 @@ const DescriptionAndPrice = (props: DescriptionAndPriceProps) => {
       </div>
 
       <div>
-        <BookingPrice price={price} long_address={long_address} />
+        <BookingPrice
+          price={price}
+          long_address={long_address}
+          villaName={villaName}
+        />
       </div>
     </div>
   );

@@ -1,17 +1,18 @@
-import Image from "next/image";
-
 import { MapPin } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-import { Button } from "../ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { villa } from "@/lib/types/villa";
 
+import Bath from "/public/assets/icon/Bath.svg";
+import Bed from "/public/assets/icon/Bed.svg";
+import Ruler from "/public/assets/icon/Ruler.svg";
 import Star from "/public/assets/icon/Star.svg";
 import UserRounded from "/public/assets/icon/UserRounded.svg";
-import Bed from "/public/assets/icon/Bed.svg";
-import Bath from "/public/assets/icon/Bath.svg";
-import Ruler from "/public/assets/icon/Ruler.svg";
+
 import { Badge } from "../ui/badge";
-import { villa } from "@/lib/types/villa";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
 const VillaCard = (villa: villa) => {
   const feature = [
@@ -20,6 +21,8 @@ const VillaCard = (villa: villa) => {
     { src: Bath, alt: "Bath", text: `${villa.bathroom} Bathrooms` },
     { src: Ruler, alt: "Ruler", text: `${villa.area} m²` },
   ];
+
+  const router = useRouter();
 
   return (
     <>
@@ -96,7 +99,12 @@ const VillaCard = (villa: villa) => {
                 </div>
               </div>
               <div>
-                <Button className="text-toby-forest-ash w-full h-10 lg:h-12">
+                <Button
+                  className="text-toby-forest-ash w-full h-10 lg:h-12"
+                  onClick={() => {
+                    router.push(`/villas/${villa.id}`);
+                  }}
+                >
                   Book
                 </Button>
               </div>

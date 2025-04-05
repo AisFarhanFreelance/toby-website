@@ -7,10 +7,11 @@ import Location from "/public/assets/icon/MapPoint.svg";
 interface BookingPriceProps {
   price: number;
   long_address: string;
+  villaName: string;
 }
 
 const BookingPrice = (props: BookingPriceProps) => {
-  const { price, long_address } = props;
+  const { price, long_address, villaName } = props;
 
   return (
     <div className="border-2 rounded-xl border-toby-forest-ash/25 font-mourich lg:min-w-[443px]">
@@ -36,7 +37,7 @@ const BookingPrice = (props: BookingPriceProps) => {
             </div>
           </div>
           <div>
-            <PriceForm price={price} />
+            <PriceForm price={price} villaName={villaName} />
           </div>
         </div>
       </div>
