@@ -72,12 +72,12 @@ const VillaCard = (villa: villa) => {
                 </div>
               </>
             )}
-
-            <div className="absolute inset-0 bg-gradient-to-t from-toby-dark-slate-blue rounded-2xl" />
-
-            <div className="absolute inset-x-0 bottom-0 uppercase text-toby-frosted-pearl space-y-2 w-48 lg:w-56 h-fit ml-6 mb-6">
+          </div>
+        </CardHeader>
+        <CardContent className="mt-4">
+          <div className="space-y-6">
+            <div className="bottom-0 uppercase text-toby-forest-ash space-y-2">
               <div>
-                <div className="text-sm lg:text-base font-bold">Start From</div>
                 <div className="font-bold text-2xl lg:text-3xl">
                   IDR {villa.price}
                   <span>
@@ -100,7 +100,7 @@ const VillaCard = (villa: villa) => {
               </div>
               <div>
                 <Button
-                  className="text-toby-forest-ash w-full h-10 lg:h-12"
+                  className="text-toby-frosted-pearl bg-toby-forest-ash w-full h-10 lg:h-12"
                   onClick={() => {
                     router.push(`/villas/${villa.id}`);
                   }}
@@ -109,24 +109,23 @@ const VillaCard = (villa: villa) => {
                 </Button>
               </div>
             </div>
-          </div>
-        </CardHeader>
-        <CardContent className="mt-4">
-          <div className="space-y-3 text-sm lg:text-base font-bold">
-            <div className="flex items-center text-center gap-2 uppercase">
-              <Image src={Star} alt="Star" sizes="24" />
-              <span>{villa.rating}</span>
-              <span className="text-toby-forest-ash/50">
-                | {villa.review_count} Review
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-3 uppercase">
-              {feature.map((item, index) => (
-                <div key={index} className="flex items-center gap-1">
-                  <Image src={item.src} alt={item.alt} sizes="16" />
-                  <span>{item.text}</span>
-                </div>
-              ))}
+
+            <div className="space-y-3 text-sm lg:text-base font-bold">
+              <div className="flex items-center text-center gap-2 uppercase">
+                <Image src={Star} alt="Star" sizes="24" />
+                <span>{villa.rating}</span>
+                <span className="text-toby-forest-ash/50">
+                  | {villa.review_count} Review
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-3 uppercase">
+                {feature.map((item, index) => (
+                  <div key={index} className="flex items-center gap-1">
+                    <Image src={item.src} alt={item.alt} sizes="16" />
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </CardContent>
