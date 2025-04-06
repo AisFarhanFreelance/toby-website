@@ -7,8 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
-  // const rotateValues = [2, -2, 3];
-
   return (
     <div className="bg-toby-forest-ash">
       <div className="grid m-6 md:grid-cols-2 min-h-[452px]">
@@ -22,10 +20,8 @@ export function Footer() {
                 <motion.p
                   whileHover={{
                     scale: 1.1,
-                    // rotate: rotateValues[index],
                     color: "#F7F4E8",
                   }}
-                  // transition={{ type: "spring", stiffness: 300 }}
                 >
                   {text}
                 </motion.p>
@@ -35,9 +31,7 @@ export function Footer() {
           <div className="flex md:flex-col gap-6 mt-12">
             <Link href="https://instagram.com" target="_blank">
               <motion.div
-                // whileHover={{ scale: 1.2, rotate: 12, originX: 0 }}
                 whileHover={{ scale: 1.2, originX: 0 }}
-                // transition={{ type: "spring", stiffness: 300 }}
                 className="flex items-center justify-start"
               >
                 <Instagram color="#f7f4e8" size="24" />
@@ -46,9 +40,7 @@ export function Footer() {
 
             <Link href="https://tiktok.com" target="_blank">
               <motion.div
-                // whileHover={{ scale: 1.2, rotate: 12, originX: 0 }}
                 whileHover={{ scale: 1.2, originX: 0 }}
-                // transition={{ type: "spring", stiffness: 300 }}
                 className="flex items-center justify-start"
               >
                 <Image src="tiktok.svg" alt="Tiktok" width={24} height={24} />
@@ -67,7 +59,6 @@ export function Footer() {
                       <motion.p
                         key={index}
                         whileHover={{ scale: 1.1, color: "#F7F4E8" }}
-                        // transition={{ type: "spring", stiffness: 300 }}
                       >
                         {item}
                       </motion.p>
@@ -87,13 +78,9 @@ export function Footer() {
                       <motion.div
                         className="flex gap-2 items-center group"
                         whileHover={{ scale: 1.1, color: "#F7F4E8" }}
-                        // transition={{ type: "spring", stiffness: 300 }}
                       >
                         <p>{item.platform}</p>
-                        <motion.div
-                          // whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.5 }}
-                        >
+                        <motion.div transition={{ duration: 0.5 }}>
                           <ArrowUpRight color="#f7f4e8" size={18} />
                         </motion.div>
                       </motion.div>
@@ -103,9 +90,7 @@ export function Footer() {
               </div>
               <motion.p
                 className="font-mourich text-3xl font-bold text-toby-frosted-pearl text-right mt-6 cursor-pointer"
-                // whileHover={{ scale: 1.1, skewY: -3, color: "#F7F4E8" }}
                 whileHover={{ scale: 1.1, color: "#F7F4E8" }}
-                // transition={{ type: "spring", stiffness: 300 }}
               >
                 <Link href="/#home">TOBY HOLDINGS</Link>
               </motion.p>
@@ -113,17 +98,11 @@ export function Footer() {
           </div>
           <div className="flex justify-between font-mourich text-xl text-toby-frosted-pearl font-semibold mt-12">
             <Link href="">
-              <motion.p
-                whileHover={{ scale: 1.1, color: "#F7F4E8" }}
-                // transition={{ type: "spring", stiffness: 300 }}
-              >
+              <motion.p whileHover={{ scale: 1.1, color: "#F7F4E8" }}>
                 Privacy
               </motion.p>
             </Link>
-            <motion.p
-              whileHover={{ scale: 1.1, color: "#F7F4E8" }}
-              // transition={{ type: "spring", stiffness: 300 }}
-            >
+            <motion.p whileHover={{ scale: 1.1, color: "#F7F4E8" }}>
               © 2025 — Copyright
             </motion.p>
           </div>
