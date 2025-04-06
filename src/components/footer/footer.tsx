@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <div className="fixed bottom-0 w-full bg-toby-forest-ash">
+    <div className="bottom-0 w-full bg-toby-forest-ash mt-auto">
       <div className="grid m-6 md:grid-cols-2 min-h-[452px]">
         <div className="flex flex-col md:justify-between">
           <div className="grid md:grid-cols-2 font-mourich text-2xl text-toby-frosted-pearl tracking-tight font-semibold">
