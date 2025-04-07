@@ -1,14 +1,26 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 import DesktopHeaderImage from "/public/assets/images/DesktopHeaderImage.svg";
 import MobileHeaderImage from "/public/assets/images/MobileHeaderImage.svg";
+
 import { Button } from "../ui/button";
 import HeaderForm from "../ui/headerForm";
 
 const HeaderSection = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const navigateToVillaList = (pathname: string) => {
+    if (pathname === "/villas") {
+      return;
+    }
+    router.push("/villas");
+  };
+
   return (
     <div id="home" className="justify-center">
       <div className="relative">
@@ -58,7 +70,14 @@ const HeaderSection = () => {
           </div>
           <div className="lg:w-full lg:px-[38px] lg:mb-[51px] lg:absolute lg:bottom-0">
             <HeaderForm />
-            <Button className="lg:hidden">Check out our villas</Button>
+            <Button
+              className="lg:hidden"
+              onClick={() => {
+                navigateToVillaList(pathname);
+              }}
+            >
+              Check out our villas
+            </Button>
           </div>
         </div>
 

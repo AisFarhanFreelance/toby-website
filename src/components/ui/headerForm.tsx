@@ -33,7 +33,7 @@ const HeaderForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <motion.div
-          className="flex justify-center items-center w-full"
+          className="hidden lg:flex justify-center items-center w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
