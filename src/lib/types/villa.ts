@@ -31,3 +31,10 @@ export type tag = {
 export type image = {
   url: string;
 };
+
+export type descriptionAndPrice = {
+  description: string;
+  price: number;
+  long_address: string;
+  villaName: string;
+};

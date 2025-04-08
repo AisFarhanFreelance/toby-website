@@ -1,58 +1,61 @@
-import Image from "next/image";
+import { MapPin } from "lucide-react";
 
 import { villaDetail } from "@/lib/types/villa";
 
-import DescriptionAndPrice from "./descriptionAndPrice";
-import FacilitiesAndAmenities from "./facilitiesAndAmenities";
-import KeyFeature from "./keyFeature";
+import Amenities from "./amenities";
+import DescriptionAndPrice from "./description-and-price";
+import Feature from "./feature";
+import ImageGallery from "./image-galery";
 
-interface VillaOverviewProps {
-  villa: villaDetail;
-}
-
-const VillaOverview = (props: VillaOverviewProps) => {
-  const { villa } = props;
-
+const VillaOverview = ({ villa }: { villa: villaDetail }) => {
   return (
-    <div className="space-y-3 lg:space-y-7">
-      <div className="space-y-3 lg:space-y-7 lg:flex lg:space-x-8 lg:h-[560px]">
-        <FacilitiesAndAmenities name={villa.name} amenities={villa.amenities} />
-        <div className="w-full h-[332px] lg:h-[560px] overflow-hidden relative rounded-xl">
-          {villa.images[0]?.url ? (
-            <Image
-              src={villa.images[0].url}
-              alt="Villa Main Image"
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <Image
-              src="https://placehold.co/550x560.png"
-              alt="BedRoom"
-              fill
-              className="object-cover"
-            />
-          )}
+    <div className="space-y-8">
+      <div className="font-mourich flex flex-col text-toby-forest-ash space-y-8">
+        <div className="text-left font-bold order-0 lg:order-1">
+          <h1 className="text-[40px] lg:text-7xl capitalize">
+            {villa.name.replace(/-/g, " ")}
+          </h1>
+          <div className="flex text-sm lg:text-base lg:items-center font-normal">
+            <div className="flex-shrink-0">
+              <MapPin size={16} />
+            </div>
+            <span className="ml-2">{villa.long_address}</span>
+          </div>
         </div>
-        <div className="lg:flex lg:flex-col lg:justify-between lg:h-full">
-          <KeyFeature
-            rating={villa.rating}
-            review_count={villa.review_count}
-            capacity={villa.capacity}
-            bedroom={villa.bedroom}
-            bathroom={villa.bathroom}
-            area={villa.area}
-            tags={villa.tags}
-            images={villa.images}
-          />
+
+        <div className="block lg:hidden order-1">
+          <Amenities amenities={villa.amenities} />
+        </div>
+
+        <div className="order-2">
+          <ImageGallery villaImages={villa.images} />
+        </div>
+
+        <div className="hidden lg:flex order-3">
+          <div>
+            <Feature features={villa} />
+          </div>
+
+          <div>
+            <Amenities amenities={villa.amenities} />
+          </div>
+        </div>
+
+        <div className="block lg:hidden order-3">
+          <Feature features={villa} />
         </div>
       </div>
-      <DescriptionAndPrice
-        description={villa.description}
-        price={villa.price}
-        long_address={villa.long_address}
-        villaName={villa.name}
-      />
+
+      <div>
+        <DescriptionAndPrice
+          descriptionAndPrice={{
+            description: villa.description,
+            price: villa.price,
+            long_address: villa.long_address,
+            villaName: villa.name,
+          }}
+        />
+      </div>
     </div>
   );
 };
