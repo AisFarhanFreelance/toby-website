@@ -4,25 +4,15 @@ import { cn } from "@/lib/utility/tailwindUtils";
 
 import { descriptionAndPrice } from "@/lib/types/villa";
 
-// interface DescriptionAndPriceProps {
-//   description: string;
-//   price: number;
-//   long_address: string;
-//   villaName: string;
-// }
-
-// const DescriptionAndPrice = (props: DescriptionAndPriceProps) => {
 const DescriptionAndPrice = ({
   descriptionAndPrice,
 }: {
   descriptionAndPrice: descriptionAndPrice;
 }) => {
-  // const { description, price, long_address, villaName } = props;
-
   return (
     <div className="text-toby-forest-ash space-y-6 lg:grid lg:grid-cols-3 lg:gap-8">
-      <div className="lg:col-span-2 lg:grid lg:grid-cols-3 lg:gap-8">
-        <div className="font-mourich text-2xl lg:text-[40px] font-bold mb-4 lg:col-span-1">
+      <div className="lg:col-span-2 lg:grid lg:grid-cols-2 lg:gap-8">
+        <div className="font-mourich text-2xl lg:text-[40px] font-bold">
           <h1>Description</h1>
         </div>
 

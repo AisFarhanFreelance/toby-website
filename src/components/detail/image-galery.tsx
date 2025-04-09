@@ -11,8 +11,8 @@ const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
   const extraCount = villaImages.length - MAX_THUMBNAILS;
 
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <div className="w-full h-[332px] lg:h-[560px] overflow-hidden relative rounded-xl">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+      <div className="w-full h-[332px] lg:h-[560px] overflow-hidden relative rounded-xl lg:col-span-3">
         <Image
           src={villaImages[0]?.url || "https://placehold.co/800x560.png"}
           alt="Villa Images"
@@ -21,8 +21,8 @@ const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
         />
       </div>
 
-      <div className="flex justify-between">
-        <div className="flex items-center justify-center space-x-[-33px] lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2">
+      <div className="lg:col-span-2 h-full w-full">
+        <div className="flex items-center justify-center space-x-[-33px] lg:space-x-0 lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2 h-full w-full">
           {visibleImages.map((img, index) => {
             const isLastVisibleImage =
               index === MAX_THUMBNAILS - 1 && extraCount > 0;
@@ -30,7 +30,7 @@ const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
             return (
               <div
                 key={index}
-                className="relative h-20 w-[66px] lg:w-full lg:h-[150px] overflow-hidden lg:rounded-lg rounded-[22.55px] border-4 border-toby-frosted-pearl lg:border-0"
+                className="relative h-20 w-[66px] lg:w-full lg:h-full overflow-hidden lg:rounded-lg rounded-[22.55px] border-4 border-toby-frosted-pearl lg:border-0"
               >
                 <Image
                   src={img.url}
@@ -40,7 +40,7 @@ const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
                 />
 
                 {isLastVisibleImage && (
-                  <div className="font-roca-one absolute inset-0 bg-toby-dark-slate-blue/50 text-toby-frosted-pearl flex items-center justify-center text-lg rounded-lg">
+                  <div className="font-roca-one absolute inset-0 bg-toby-dark-slate-blue/50 text-toby-frosted-pearl flex items-center justify-center text-lg lg:text-5xl rounded-lg">
                     +{extraCount}
                   </div>
                 )}

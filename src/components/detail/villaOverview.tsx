@@ -15,7 +15,7 @@ const VillaOverview = ({ villa }: { villa: villaDetail }) => {
           <h1 className="text-[40px] lg:text-7xl capitalize">
             {villa.name.replace(/-/g, " ")}
           </h1>
-          <div className="flex text-sm lg:text-base lg:items-center font-normal">
+          <div className="flex text-sm lg:text-xl lg:items-center font-normal">
             <div className="flex-shrink-0">
               <MapPin size={16} />
             </div>
@@ -31,7 +31,7 @@ const VillaOverview = ({ villa }: { villa: villaDetail }) => {
           <ImageGallery villaImages={villa.images} />
         </div>
 
-        <div className="hidden lg:flex order-3">
+        <div className="hidden lg:grid lg:grid-cols-2 order-3">
           <div>
             <Feature features={villa} />
           </div>
