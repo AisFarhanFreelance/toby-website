@@ -8,6 +8,7 @@ export type villa = {
   bedroom: number;
   bathroom: number;
   area: number;
+  gmap_url: string;
   description: string;
   review_count: number;
   images: image[];

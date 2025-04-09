@@ -28,7 +28,7 @@ const VillaOverview = ({ villa }: { villa: villaDetail }) => {
         </div>
 
         <div className="order-2">
-          <ImageGallery villaImages={villa.images} />
+          <ImageGallery villaImages={villa.images} gmapUrl={villa.gmap_url} />
         </div>
 
         <div className="hidden lg:grid lg:grid-cols-2 order-3">

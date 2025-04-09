@@ -1,14 +1,25 @@
-import { ArrowUpRight } from "lucide-react";
+"use client";
+
+import { ArrowUpRight, Map } from "lucide-react";
 import Image from "next/image";
+
+import { cn } from "@/lib/utility/tailwindUtils";
 
 import { image } from "@/lib/types/villa";
 
 import { Button } from "../ui/button";
 
-const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
+const ImageGallery = ({
+  villaImages,
+  gmapUrl,
+}: {
+  villaImages: image[];
+  gmapUrl: string;
+}) => {
   const MAX_THUMBNAILS = 4;
   const visibleImages = villaImages.slice(0, MAX_THUMBNAILS);
   const extraCount = villaImages.length - MAX_THUMBNAILS;
+  const hasBackgroundImage = visibleImages.length >= 4;
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
@@ -19,10 +30,17 @@ const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
           fill
           className="object-cover"
         />
+        <Button
+          onClick={() => window.open(gmapUrl, "_blank")}
+          className="flex justify-between items-center gap-3 bg-toby-frosted-pearl text-toby-forest-ash/80 absolute bottom-3 left-3 lg:bottom-6 lg:left-6 rounded-full text-base lg:text-xl px-6 h-[48px] lg:h-[60px] lg:px-[30px]"
+        >
+          <Map size={16} className="lg:w-6 lg:h-6" />
+          View On Map
+        </Button>
       </div>
 
-      <div className="lg:col-span-2 h-full w-full">
-        <div className="flex items-center justify-center space-x-[-33px] lg:space-x-0 lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2 h-full w-full">
+      <div className="relative w-full lg:col-span-2 h-full flex justify-between lg:block">
+        <div className="flex items-center space-x-[-33px] lg:space-x-0 lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2 h-full w-full">
           {visibleImages.map((img, index) => {
             const isLastVisibleImage =
               index === MAX_THUMBNAILS - 1 && extraCount > 0;
@@ -48,11 +66,29 @@ const ImageGallery = ({ villaImages }: { villaImages: image[] }) => {
             );
           })}
         </div>
-        <div className="relative lg:hidden">
-          <Button className="bg-toby-forest-ash/50 rounded-full h-[49px] w-[49px] p-0 flex items-center justify-center absolute top-0 right-0">
-            <ArrowUpRight className="text-toby-frosted-pearl" size={24} />
-          </Button>
-        </div>
+        <Button
+          className={cn(
+            "bg-toby-forest-ash/50 rounded-full px-4 py-2 text-sm h-[49px] w-[49px] lg:h-auto lg:w-auto lg:text-base flex items-center justify-center z-10 lg:absolute lg:bottom-3 lg:right-3",
+            hasBackgroundImage
+              ? "lg:bg-toby-frosted-pearl lg:hover:bg-toby-frosted-pearl"
+              : "lg:bg-toby-forest-ash lg:hover:bg-toby-forest-ash",
+          )}
+        >
+          <ArrowUpRight
+            size={24}
+            className="lg:hidden text-toby-frosted-pearl"
+          />
+          <span
+            className={cn(
+              "hidden lg:inline font-bold my-2 mx-4",
+              hasBackgroundImage
+                ? "text-toby-forest-ash"
+                : "text-toby-frosted-pearl",
+            )}
+          >
+            Show All Photos
+          </span>
+        </Button>
       </div>
     </div>
   );
