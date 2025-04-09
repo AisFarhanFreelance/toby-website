@@ -11,8 +11,8 @@ const DescriptionAndPrice = ({
 }) => {
   return (
     <div className="text-toby-forest-ash space-y-6 lg:grid lg:grid-cols-3 lg:gap-8">
-      <div className="lg:col-span-2 lg:grid lg:grid-cols-2 lg:gap-8">
-        <div className="font-mourich text-2xl lg:text-[40px] font-bold">
+      <div className="lg:col-span-2 lg:gap-8">
+        <div className="font-mourich text-2xl mb-6 lg:text-[40px] font-bold">
           <h1>Description</h1>
         </div>
 
