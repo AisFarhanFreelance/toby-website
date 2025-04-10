@@ -58,7 +58,7 @@ export const DatePicker = ({
           >
             <div className="flex w-full items-center justify-between p-1.5">
               {value ? (
-                <span className="text-left flex-1">
+                <span className="text-left text-xs sm:text-base flex-1">
                   {format(value, "dd MM yyyy")}
                 </span>
               ) : (

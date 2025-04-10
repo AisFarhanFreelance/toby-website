@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { villa } from "@/lib/types/villa";
 
 import Input from "../ui/input";
+import SkeletonVillaCard from "../ui/skeleton-villa-card";
 import VillaCard from "./villaCard";
 
 type findAVillaProps = {
@@ -16,18 +17,24 @@ type findAVillaProps = {
 const FindAVilla = (props: findAVillaProps) => {
   const { villas } = props;
 
+  const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    setIsLoading(true);
     const query = searchParams.get("query") ?? "";
     setSearch(query);
+
+    setIsLoading(false);
   }, [searchParams]);
 
   useEffect(() => {
+    setIsLoading(true);
     const timeout = setTimeout(() => {
       router.push(`?query=${search}`, { scroll: false });
+      setIsLoading(false);
     }, 1000);
 
     return () => clearTimeout(timeout);
@@ -51,8 +58,11 @@ const FindAVilla = (props: findAVillaProps) => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {villas &&
-          villas.map((villa) => <VillaCard key={villa.id} {...villa} />)}
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonVillaCard key={`skeleton-${index}`} />
+            ))
+          : villas?.map((villa) => <VillaCard key={villa.id} {...villa} />)}
       </div>
     </div>
   );
